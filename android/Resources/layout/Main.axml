@@ -1,14 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<Button  
-    android:id="@+id/myButton"
-    android:layout_width="match_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+    android:layout_height="fill_parent">
+    <TextView
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean urna massa, placerat et erat quis, efficitur luctus justo. Sed orci dolor, ullamcorper sit amet ante id, aliquet malesuada ipsum. Phasellus posuere elit placerat sem varius, sit amet dictum libero accumsan. Ut quis augue a lectus cursus vestibulum. Donec malesuada nulla sit amet nulla commodo aliquam. Quisque posuere tellus et ipsum commodo hendrerit et id diam. Duis laoreet placerat tellus finibus porta. Nam ultricies venenatis risus, nec pretium lorem rhoncus sed. Mauris vel vehicula tellus, ut convallis velit. Phasellus quis risus id massa semper gravida. Etiam tristique euismod libero ut consectetur. Aenean tortor leo, efficitur vitae arcu in, elementum rutrum sem. Nunc in faucibus justo, ac tincidunt lorem."
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:hint="lorem ipsum" />
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/myButton" />
 </LinearLayout>
-

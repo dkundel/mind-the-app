@@ -41,8 +41,19 @@ namespace mindTheApp
 			};
 			LogReader.AddCallback ("com.android.chrome", this.NotifyWebBrowser);
 			//this.ApplicationContext.StartService ();
+
+			ActionBar.SetDisplayShowHomeEnabled (true);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetCustomView (Resource.Layout.loweractionbar);
+			ActionBar.SetDisplayShowCustomEnabled (true);
+
 		}
+//		[Application(UiOptions = UiOptions.SplitActionBarWhenNarrow)]
+//		public class App : Application {
+//			public App(IntPtr javaReference, JniHandleOwnership transfer) 
+//				: base(javaReference, transfer) { }
+//		}
+//		[Activity(Label = "", UiOptions=Android.Content.PM.UiOptions.SplitActionBarWhenNarrow)]
 	}
+
 }
-
-

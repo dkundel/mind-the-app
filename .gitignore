@@ -5,3 +5,7 @@ android/obj
 android/parser/bin
 android/parser/obj
 *.userprefs
+
+bower_components/
+node_modules/
+.DS_Store

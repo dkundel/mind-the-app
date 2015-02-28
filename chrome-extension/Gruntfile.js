@@ -366,6 +366,28 @@ module.exports = function (grunt) {
           dest: ''
         }]
       }
+    },
+    vulcanize: {
+      default: {
+        options: {
+          csp: true,
+          excludes: {
+            imports: [
+              "polymer.html"
+            ]
+          },
+          abspath: '<%= config.app %>'
+        },
+        files: {
+          '_popup.html': 'popup.html'
+        },
+      },
+    },
+    browserify: {
+      dist: {
+        src: ['app/scripts/tmplBackground.js'],
+        dest: 'app/scripts/background.js'
+      }
     }
   });
 
@@ -373,6 +395,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'jshint',
       'concurrent:chrome',
+      'browserify',
       'connect:chrome',
       'watch'
     ]);

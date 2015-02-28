@@ -1,0 +1,98 @@
+<!doctype html>
+<html style="min-width:400px;">
+  <head>
+    <meta charset="utf-8">
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <script src="bower_components/localforage/dist/localforage.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+    <link rel="import" href="bower_components/core-elements/core-elements.html">
+    <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+  </head>
+  <body unresolved>
+    <core-drawer-panel id="drawerPanel">
+      <core-header-panel main fit vertical layout>
+        <core-toolbar id="mainheader" z="2">
+          <span>
+            <img src="images/logo-white.png" width="80">
+          </span>
+          <span flex>Mind the App</span>
+        </core-toolbar>
+        <div fit vertical layout>
+          <div flex class="content">
+            <core-pages selected="0">
+              <div id="createPage">
+                <h2>Create Reminder</h2>
+                <div>
+                  <paper-input id="nameInput" label="Name" floatingLabel="true"></paper-input>
+                </div>
+                <div>
+                  <paper-input id="urlInput" label="Url" floatingLabel="true"></paper-input>
+                </div>
+                <div>
+                  <paper-input id="messageInput" label="Message" floatingLabel="true"></paper-input>
+                </div>
+                <paper-fab id="createReminderBtn" icon="add" aria-label="Create" z="3"></paper-fab>
+              </div>
+              <div id="listPage" flex>
+                <h2>Your Reminders</h2>
+                <core-list id="reminderList" style="height: 100%;">
+                  <template>
+                    <div class="row">
+                      <p>{{model.name}}</p>
+                      <p>{{model.url}}</p>s
+                      <core-icon icon="chevron-right"></core-icon>
+                    </div>
+                    <div divider></div>
+                  </template>
+                </core-list>
+              </div>
+              <div id="accountPage">
+                <div id="notLoggedIn">
+                  <h2>Please log in via FB</h2>
+                </div>
+                <div id="loggedIn">
+                  <h2>
+                    Hi, <span class="username">Fucked-Up Elephant</span>
+                  </h2>
+                  <p>You currently have <span id="reminderCount">0</span> Reminders saved</p>
+                </div>
+              </div>
+              <div id="detailsPage">
+                
+              </div>
+            </core-pages>
+          </div>
+          <footer>
+            <paper-tabs noink selected="0">
+            <paper-tab>
+              <a href="#link1" horizontal center-center layout>+</a>
+            </paper-tab>
+            <paper-tab>
+              <a href="#link2" horizontal center-center layout>List Reminders</a>
+            </paper-tab>
+            <paper-tab>
+              <a href="#link3" horizontal center-center layout>Account</a>
+            </paper-tab>
+          </paper-tabs>
+          </footer>
+        </div>
+      </core-header-panel>
+    </core-drawer-panel>
+
+    <!-- build:js scripts/popup.js -->
+    <script src="scripts/popup.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

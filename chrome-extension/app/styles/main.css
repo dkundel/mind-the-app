@@ -1,0 +1,96 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\000036}}
+html {
+  min-width: 400px;
+  min-height: 500px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000311}}
+body {
+  padding: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000315}}
+*:focus {
+  outline: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000319}}
+body {
+  font-family: sans-serif;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000322}}
+core-header-panel {
+  background: white;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000325}}
+core-toolbar {
+  background-color: #0c9875;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000328}}
+.content {
+  padding: 20px;
+}
+
+/* drawer is always visible on a wide screen
+   so menu button isn't required */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000333}}
+core-drawer-panel:not([narrow]) #navicon {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000338}}
+body {
+  font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+  margin: 0;
+  padding: 24px;
+  color: #333;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000345}}
+body.core-narrow {
+  padding: 8px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000349}}
+paper-tabs, core-toolbar {
+  background-color: #0c9875;
+  color: #fff;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000355}}
+core-toolbar paper-tabs {
+  box-shadow: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000359}}
+paper-tabs.transparent-teal {
+  background-color: transparent;
+  color: #00bcd4;
+  box-shadow: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000365}}
+paper-tabs #selectionBar {
+  background-color: #981DA5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000369}}
+h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/** No more copy paste */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000377}}
+core-pages > div {
+  position: relative;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000387}}
+paper-fab {
+  background-color: #981DA5;
+}

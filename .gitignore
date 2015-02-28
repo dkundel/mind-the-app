@@ -5,3 +5,5 @@ android/obj
 android/parser/bin
 android/parser/obj
 *.userprefs
+*.#*
+android/parser/parser-linux.fsproj

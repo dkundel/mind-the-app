@@ -8,8 +8,17 @@ module parser =
   type PResult<'t,'s>(result : Choice<'t,string list>, state: 's) =
     class 
       member this.Result with get() = result
+      member this.Success with get() = 
+          match result with
+          | Choice1Of2 _ -> true
+          | _ -> false
       member this.State with get() = state
       member this.Map f = PResult(f result,state)
+      member this.Value with get() =
+          match result with
+          | Choice1Of2 r -> r
+          | Choice2Of2 err ->
+              sprintf "The parser failed because: %A" err |> failwith
     end
 
   type parser<'t,'s> = {
@@ -23,6 +32,7 @@ module parser =
               | Choice1Of2 v -> r.State |> (p' v).Apply
               | Choice2Of2 e -> PResult<_,_>(Choice2Of2 e,r.State)
       }
+    member o.Parse(input) = o.Apply(input)
 
   let mkParser f = {Apply = f}
 
@@ -88,13 +98,19 @@ module parser =
 
     static member PManyS(p) = Parsers.PManyMon("",(fun (x : char) xs -> x.ToString() + xs),p)
 
+    type ParserAdapter<'t when 't : null>(p : parser<'t,string>) =
+        member x.Apply(s : string) =
+            match p.Apply(s).Result with
+            | Choice1Of2 r -> r
+            | Choice2Of2 _ -> null
+
 module logParser =
 
   open parser
 
   type P = Parsers
 
-  let pActivity =
+  let pActivity = 
     P.PStr "I/ActivityManager"
     >>> P.PBetween("(",")",P.PSpc >>> P.PInt <* P.PSpc)
     >>= (fun aid -> P.PStr ":" >>> P.PManyS(P.PAnyChar) |>> fun (x:string) -> aid,x)

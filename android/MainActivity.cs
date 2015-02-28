@@ -14,6 +14,16 @@ namespace mindTheApp
 	{
 		int count = 1;
 
+		private void NotifyWebBrowser(){
+
+			int id = 0;
+			NotificationManager notificationManager = this.GetSystemService (Context.NotificationService) as NotificationManager;
+			var n = new Notification.Builder(this).SetContentTitle("AppWasOpened" + id)
+													.SetContentText("text" + id)
+													.SetSmallIcon(Resource.Drawable.Icon);
+			notificationManager.Notify (id, n.Build());
+
+		}
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -29,7 +39,7 @@ namespace mindTheApp
 			button.Click += delegate {
 				button.Text = string.Format ("{0} clicks!", count++);
 			};
-			LogReader.SetActivity (this);
+			LogReader.AddCallback ("com.android.chrome", this.NotifyWebBrowser);
 			//this.ApplicationContext.StartService ();
 		}
 	}

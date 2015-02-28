@@ -5,12 +5,14 @@ using Android.Runtime;
 using System.Threading.Tasks;
 using Android.Content;
 using Android.App;
+using System.Collections.Generic;
 
 namespace mindTheApp
 {
 	[Service]
 	public class LogReader : Service
 	{
+		private static Dictionary<string,Action> callbacks = new Dictionary<string,Action>();
 		private static Activity act;
 		private Process pr;
 		//private string cmd = "logcat | grep \"I/ActivityManager\""
@@ -24,6 +26,11 @@ namespace mindTheApp
 
 		public static void SetActivity(Activity a){act = a;}
 
+		public static void AddCallback(string package,Action cb){
+
+			callbacks[package] = cb;
+		}
+
 		private void RunService(){
 			Task.Factory.StartNew (this.TryLogs);
 		}
@@ -32,7 +39,6 @@ namespace mindTheApp
 		{
 			base.OnStart (intent, startId);
 			this.RunService ();
-			Android.Util.Log.Info ("TheService", "Service");
 		}
 
 		public override StartCommandResult OnStartCommand(Intent intent,StartCommandFlags flags, int id){
@@ -58,7 +64,6 @@ namespace mindTheApp
 
 			do {
 				await Task.Delay(1000);
-				id++;
 				//this.pr = Runtime.GetRuntime().Exec(cmd);
 				string line = "";
 				do{
@@ -66,21 +71,20 @@ namespace mindTheApp
 					line = await scn.ReadLineAsync();
 
 					if(line != null){
-						mindTheApp.parser.PResult<Tuple<int,string>,string> t = mindTheApp.logParser.pActivity.Parse(line);
-					if(t.Success){
-						Android.Util.Log.Info("MindTheApp","Parsed :" + t.Value.Item2);
-						if(act != null){
+						mindTheApp.parser.PResult<Tuple<int,string>,string> result = mindTheApp.logParser.pActivity.Parse(line);
+					
+						if(result.Success){
 
-							this.notificationManager = act.GetSystemService (Context.NotificationService) as NotificationManager;
-							var n = new Notification.Builder(act).SetContentTitle("AppWasOpened" + id).SetContentText("text" + id).SetSmallIcon(Resource.Drawable.Icon);
-							this.notificationManager.Notify (id, n.Build());
-							//act = null;
+							foreach(var kvp in callbacks){
+
+								if(result.Value.Item2.Contains(kvp.Key)){
+
+									await Task.Factory.StartNew(kvp.Value);
+								}
+							}
 						}
-				}
-				}
+					}
 				}while(line != null);
-				//else 
-					//Android.Util.Log.Info("MindTheApp","Read: " + line);
 			} while(true);
 		}
 	}

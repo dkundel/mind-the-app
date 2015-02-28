@@ -63,4 +63,10 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="parser\parser.fsproj">
+      <Project>{02BA66EE-801E-41F7-BE88-96531323D50F}</Project>
+      <Name>parser</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

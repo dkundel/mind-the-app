@@ -24,10 +24,13 @@ namespace mindTheApp
 			// Get our button from the layout resource,
 			// and attach an event to it
 			Button button = FindViewById<Button> (Resource.Id.myButton);
-			
+			var l = new LogReader ();
+			System.Threading.Tasks.Task.Factory.StartNew (l.TryLogs);
 			button.Click += delegate {
 				button.Text = string.Format ("{0} clicks!", count++);
 			};
+
+			//this.ApplicationContext.StartService ();
 		}
 	}
 }

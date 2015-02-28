@@ -29,7 +29,7 @@ namespace mindTheApp
 			button.Click += delegate {
 				button.Text = string.Format ("{0} clicks!", count++);
 			};
-
+			LogReader.SetActivity (this);
 			//this.ApplicationContext.StartService ();
 		}
 	}

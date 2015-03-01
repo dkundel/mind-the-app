@@ -1,10 +1,20 @@
 (function() {
   'use strict';
-  var ReminderUrls, Reminders, createCleanUrl, getReminders, handlePageSwitch, localforage, requestSavedReminders, showNotification, storeReminder, _;
+  var Client, CurrentUser, REMINDER_TABLENAME, ReminderUrls, Reminders, createCleanUrl, getReminders, handleLogin, handlePageSwitch, localforage, moment, requestSavedReminders, showNotification, storeReminder, syncData, _;
 
   localforage = require('localforage');
 
   _ = require('underscore');
+
+  moment = require('moment');
+
+  REMINDER_TABLENAME = 'Item';
+
+  Client = new WindowsAzure.MobileServiceClient(connectionAzure.url, connectionAzure.id);
+
+  CurrentUser = null;
+
+  window.client = Client;
 
   localforage.setDriver(localforage.LOCALSTORAGE);
 
@@ -15,15 +25,21 @@
   console.log('\'Allo \'Allo! Event Page for Browser Action');
 
   storeReminder = function(reminder, sendResponse) {
-    reminder.user = null;
-    reminder.repeating = true;
+    reminder.user = CurrentUser ? CurrentUser.userId : null;
+    reminder.type = 'browser';
+    reminder._updatedAt = moment.utc().format();
     return localforage.setItem(reminder.url, reminder, function(err, value) {
       if (!err) {
         ReminderUrls.push(reminder.url);
         sendResponse({
           success: true
         });
-        return showNotification(reminder.name, 'Successfully saved');
+        showNotification(reminder.name, 'Successfully saved');
+        if (CurrentUser) {
+          return client.getTable(REMINDER_TABLENAME).insert(reminder).then(function(value) {
+            return console.log('TO THE CLOUD!');
+          });
+        }
       } else {
         return sendResponse({
           err: err
@@ -67,7 +83,9 @@
     Reminders = [];
     return localforage.iterate(function(value, key) {
       console.log('one more');
-      Reminders.push(value);
+      if (value.type) {
+        Reminders.push(value);
+      }
     }, function() {
       return chrome.runtime.sendMessage({
         action: 'updateReminders',
@@ -97,7 +115,7 @@
                   return console.log(err);
                 });
               } else {
-                return showNotification(value.name, value.message, 'Disable');
+                return showNotification(value.name, value.message);
               }
             }
           } else {
@@ -119,7 +137,46 @@
     return cleanUrl;
   };
 
-  requestSavedReminders();
+  handleLogin = function(user) {
+    CurrentUser = user;
+    return client.currentUser = user;
+  };
+
+  syncData = function() {
+    var query;
+    if (CurrentUser) {
+      console.log('SYNC');
+      query = Client.getTable(REMINDER_TABLENAME);
+      return localforage.getItem('LASTSYNC', function(err, value) {
+        if (!err) {
+          if (value) {
+            query = query.where(function() {
+              return moment(this._updatedAt).isAfter(value);
+            });
+          }
+          return query.where({
+            type: 'browser',
+            user: CurrentUser.userId
+          }).read().done(function(results) {
+            _.each(results, function(result) {
+              return localforage.setItem(result.url, result, function(err, value) {
+                return ReminderUrls.push(result.url);
+              });
+            });
+            return localforage.setItem('LASTSYNC', moment.utc().format(), function(err, value) {
+              if (err) {
+                return console.log('syncerr', err);
+              }
+            });
+          });
+        }
+      });
+    }
+  };
+
+  syncData();
+
+  setInterval(syncData, 30000);
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(arguments);
@@ -131,7 +188,13 @@
       storeReminder(request.reminder, sendResponse);
     }
     if ((request != null ? request.action : void 0) === 'getReminders') {
-      return getReminders(sendResponse);
+      getReminders(sendResponse);
+    }
+    if ((request != null ? request.action : void 0) === 'getClient') {
+      sendResponse(client);
+    }
+    if ((request != null ? request.action : void 0) === 'userLogin') {
+      return handleLogin(request.user);
     }
   });
 

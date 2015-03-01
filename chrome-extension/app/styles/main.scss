@@ -79,6 +79,44 @@ paper-checkbox::shadow #checkbox.checked {
   border-color: $primaryColor;
 }
 
+paper-input /deep/ ::-webkit-input-placeholder {
+  color: #aaa;
+}
+paper-input /deep/ ::-moz-placeholder {
+  color: #aaa;
+}
+paper-input /deep/ :-ms-input-placeholder {
+  color: #aaa;
+}
+paper-input /deep/ .label-text,
+paper-input /deep/ .error {
+  color: $primaryColor;
+}
+paper-input /deep/ .unfocused-underline {
+  background-color: #aaa;
+}
+paper-input[focused] /deep/ .floated-label .label-text {
+  color: red;
+}
+paper-input /deep/ .focused-underline {
+  background-color: $primaryColor;
+}
+paper-input.invalid /deep/ .floated-label .label-text,
+paper-input /deep/ .error {
+  color: $primaryColor;
+}
+paper-input.invalid /deep/ .focused-underline {
+  background-color: $primaryColor;
+}
+paper-input {
+  color: black;
+}
+
+paper-button[raised].facebookLogin {
+  background: #3b5998;
+  color: #fff;
+}
+
 /** No more copy paste */
 
 core-pages {

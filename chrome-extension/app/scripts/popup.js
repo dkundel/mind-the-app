@@ -1,21 +1,45 @@
 (function() {
   'use strict';
-  var createReminder, getReminders;
+  var REMINDERS, client, createReminder, getReminders, handleLoggedIn, loadDetailsReminder, logIn;
 
   console.log('\'Allo \'Allo! Popup');
 
+  client = new WindowsAzure.MobileServiceClient(connectionAzure.url, connectionAzure.id);
+
+  REMINDERS = [];
+
   document.addEventListener('polymer-ready', function() {
-    getReminders();
     $('#createReminderBtn').click(createReminder);
-    return $('paper-tabs').children().each(function(idx) {
+    $('paper-tabs').children().each(function(idx) {
       var $tab;
       $tab = $(this);
       return $tab.click(function(evt) {
         console.log(idx);
-        return document.querySelector('core-pages').selected = idx;
+        document.querySelector('core-pages').selected = idx;
+        if (idx === 1) {
+          return getReminders();
+        }
       });
     });
+    $('.facebookLogin').click(logIn);
+    return $('#reminderList').on('click', '.row', function(e) {
+      var idx;
+      idx = $('#reminderList .row').index(this);
+      return loadDetailsReminder(idx);
+    });
   });
+
+  loadDetailsReminder = function(idx) {
+    var reminder;
+    reminder = REMINDERS[idx];
+    if (reminder) {
+      document.getElementById('nameDetails').value = reminder.name;
+      document.getElementById('urlDetails').value = reminder.url;
+      document.getElementById('messageDetails').value = reminder.message;
+      document.getElementById('repeatingDetails').checked = reminder.repeating;
+      return document.querySelector('core-pages').selected = 3;
+    }
+  };
 
   createReminder = function() {
     var reminder, _ref, _ref1, _ref2, _ref3;
@@ -43,11 +67,24 @@
     });
   };
 
+  logIn = function() {
+    return client.login('facebook').then(handleLoggedIn, function(err) {
+      return console.log('err', err);
+    });
+  };
+
+  handleLoggedIn = function() {
+    console.log('logged in');
+    return console.log(arguments);
+  };
+
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if ((request != null ? request.action : void 0) === 'updateReminders') {
       $('#loadingReminders').hide();
       $('#reminderList').show();
-      return document.getElementById('reminderList').data = request.reminders;
+      document.getElementById('reminderList').data = request.reminders;
+      REMINDERS = request.reminders;
+      return $('#reminderCount').html(request.reminders.length);
     }
   });
 

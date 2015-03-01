@@ -1,28 +1,243 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html><html><head>
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css styles/main.css -->
-    <link href="styles/main.css" rel="stylesheet">
+    <style>@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\000036}}
+html {
+  min-width: 400px;
+  min-height: 500px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000311}}
+body {
+  padding: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000315}}
+*:focus {
+  outline: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000319}}
+body {
+  font-family: sans-serif;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000322}}
+core-header-panel {
+  background: white;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000325}}
+core-toolbar {
+  background-color: #0c9875;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000328}}
+.content {
+  padding: 20px;
+}
+
+/* drawer is always visible on a wide screen
+   so menu button isn't required */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000333}}
+core-drawer-panel:not([narrow]) #navicon {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000338}}
+body {
+  font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+  margin: 0;
+  padding: 24px;
+  color: #333;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000345}}
+body.core-narrow {
+  padding: 8px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000349}}
+paper-tabs, core-toolbar {
+  background-color: #0c9875;
+  color: #fff;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000355}}
+core-toolbar paper-tabs {
+  box-shadow: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000359}}
+paper-tabs.transparent-teal {
+  background-color: transparent;
+  color: #00bcd4;
+  box-shadow: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000365}}
+paper-tabs #selectionBar {
+  background-color: #981DA5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000369}}
+h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000374}}
+paper-checkbox::shadow #ink[checked] {
+  color: #0c9875;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000377}}
+paper-checkbox::shadow #checkbox.checked {
+  background-color: #0c9875;
+  border-color: #0c9875;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000382}}
+paper-input /deep/ ::-webkit-input-placeholder {
+  color: #aaa;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000385}}
+paper-input /deep/ ::-moz-placeholder {
+  color: #aaa;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000388}}
+paper-input /deep/ :-ms-input-placeholder {
+  color: #aaa;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000391}}
+paper-input /deep/ .label-text,
+paper-input /deep/ .error {
+  color: #0c9875;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000395}}
+paper-input /deep/ .unfocused-underline {
+  background-color: #aaa;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000398}}
+paper-input[focused] /deep/ .floated-label .label-text {
+  color: red;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003101}}
+paper-input /deep/ .focused-underline {
+  background-color: #0c9875;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003104}}
+paper-input.invalid /deep/ .floated-label .label-text,
+paper-input /deep/ .error {
+  color: #0c9875;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003108}}
+paper-input.invalid /deep/ .focused-underline {
+  background-color: #0c9875;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003111}}
+paper-input {
+  color: black;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003115}}
+paper-button[raised].facebookLogin {
+  background: #3b5998;
+  color: #fff;
+}
+
+/** No more copy paste */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003123}}
+core-pages > div {
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003128}}
+core-pages #createPage #createReminderBtn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003136}}
+paper-fab {
+  background-color: #981DA5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003140}}
+paper-checkbox {
+  padding: 10px;
+  padding-right: 15px;
+  padding-left: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003146}}
+paper-input.stretch {
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003150}}
+paper-ripple {
+  position: absolute;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003155}}
+#reminderList .row {
+  padding-left: 10px;
+  border-bottom: 1px solid #AAA;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003159}}
+#reminderList .row .reminderInfoRow .reminderNameRow {
+  font-weight: bold;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003162}}
+#reminderList .row .reminderInfoRow .reminderUrlRow {
+  color: #AAA;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003169}}
+#reminderList .row:last-of-type {
+  border-bottom: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003173}}
+#reminderList core-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+</style>
     <!-- endbuild -->
   </head>
   <body>
-    <h1>'Allo, 'Allo!</h1>
+    <h1>Please log for Mind the App</h1>
+
+    <button>Log In with Facebook</button>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
-    <script src="bower_components/polymer/polymer.js"></script>
-    <script src="bower_components/localforage/dist/localforage.js"></script>
+    
+    
+    
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js scripts/options.js -->
-    <script src="scripts/options.js"></script>
+    
+    
+    
     <!-- endbuild -->
-  </body>
-</html>
+  
+
+<script charset="utf-8" src="options.js"></script></body></html>

@@ -61,7 +61,14 @@ namespace mindTheApp
 				TimePicker late = FindViewById<TimePicker> (Resource.Id.late);
 				EditText msg = FindViewById<EditText> (Resource.Id.message);
 
-				if (toggleButton1.Checked) {
+				Button donebutton = FindViewById<Button> (Resource.Id.donebutton);
+
+				donebutton.Click += delegate {
+					StartActivity(typeof(MainActivity));
+				};
+
+
+				if (toggleButton1.Activated) {
 
 					Action<Activity> a;
 

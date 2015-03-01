@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var Client, CurrentUser, REMINDER_TABLENAME, ReminderUrls, Reminders, createCleanUrl, getReminders, handleLogin, handlePageSwitch, localforage, moment, requestSavedReminders, showNotification, storeReminder, syncData, _;
+  var Client, CurrentUser, REMINDER_TABLENAME, ReminderUrls, Reminders, createCleanUrl, getReminders, handleLogin, handlePageSwitch, localforage, moment, requestSavedReminders, showNotification, storeReminder, syncData, updateReminder, _;
 
   localforage = require('localforage');
 
@@ -28,9 +28,33 @@
     reminder.user = CurrentUser ? CurrentUser.userId : null;
     reminder.type = 'browser';
     reminder._updatedAt = moment.utc().format();
-    return localforage.setItem(reminder.url, reminder, function(err, value) {
+    return localforage.setItem(reminder.trigger, reminder, function(err, value) {
       if (!err) {
-        ReminderUrls.push(reminder.url);
+        ReminderUrls.push(reminder.trigger);
+        sendResponse({
+          success: true
+        });
+        showNotification(reminder.name, 'Successfully saved');
+        if (CurrentUser) {
+          return client.getTable(REMINDER_TABLENAME).insert(reminder).then(function(value) {
+            return console.log('TO THE CLOUD!');
+          });
+        }
+      } else {
+        return sendResponse({
+          err: err
+        });
+      }
+    });
+  };
+
+  updateReminder = function(reminder, sendResponse) {
+    reminder.user = CurrentUser ? CurrentUser.userId : null;
+    reminder.type = 'browser';
+    reminder._updatedAt = moment.utc().format();
+    return localforage.setItem(reminder.trigger, reminder, function(err, value) {
+      if (!err) {
+        ReminderUrls.push(reminder.trigger);
         sendResponse({
           success: true
         });
@@ -98,8 +122,9 @@
 
   handlePageSwitch = function(url, sendResponse) {
     var checkMatches;
-    console.log(url);
+    console.log('url', url);
     url = createCleanUrl(url);
+    console.log(ReminderUrls);
     checkMatches = function() {
       var matches;
       matches = _.filter(ReminderUrls, function(testUrl) {
@@ -157,10 +182,10 @@
           return query.where({
             type: 'browser',
             user: CurrentUser.userId
-          }).read().done(function(results) {
+          }).orderBy('_updatedAt').read().done(function(results) {
             _.each(results, function(result) {
-              return localforage.setItem(result.url, result, function(err, value) {
-                return ReminderUrls.push(result.url);
+              return localforage.setItem(result.trigger, result, function(err, value) {
+                return ReminderUrls.push(result.trigger);
               });
             });
             return localforage.setItem('LASTSYNC', moment.utc().format(), function(err, value) {
@@ -176,7 +201,7 @@
 
   syncData();
 
-  setInterval(syncData, 30000);
+  setInterval(syncData, 2000);
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(arguments);
@@ -187,6 +212,9 @@
     if ((request != null ? request.action : void 0) === 'addReminder') {
       storeReminder(request.reminder, sendResponse);
     }
+    if ((request != null ? request.action : void 0) === 'updateReminder') {
+      storeReminder(request.reminder, sendResponse);
+    }
     if ((request != null ? request.action : void 0) === 'getReminders') {
       getReminders(sendResponse);
     }
@@ -194,7 +222,13 @@
       sendResponse(client);
     }
     if ((request != null ? request.action : void 0) === 'userLogin') {
-      return handleLogin(request.user);
+      handleLogin(request.user);
+    }
+    if ((request != null ? request.action : void 0) === 'userStatus') {
+      console.log('user', CurrentUser);
+      if (CurrentUser === !null) {
+        return sendResponse(true);
+      }
     }
   });
 

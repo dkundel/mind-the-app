@@ -11,3 +11,5 @@ node_modules/
 *.#*
 android/parser/parser-linux.fsproj
 connectionAzure.js
+
+server/basicApiWrapper/routes/index.js

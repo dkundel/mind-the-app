@@ -17843,7 +17843,6 @@ window.connectionAzure = {
   };
 
   logIn = function() {
-    alert('foo');
     return client.login('facebook').then(handleLoggedIn, function(err) {
       return console.log('err', err);
     });

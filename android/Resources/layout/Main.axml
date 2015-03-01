@@ -9,20 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/stackView1" />
-    <TextView
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean urna massa, placerat et erat quis, efficitur luctus justo. Sed orci dolor, ullamcorper sit amet ante id, aliquet malesuada ipsum. Phasellus posuere elit placerat sem varius, sit amet dictum libero accumsan. Ut quis augue a lectus cursus vestibulum. Donec malesuada nulla sit amet nulla commodo aliquam. Quisque posuere tellus et ipsum commodo hendrerit et id diam. Duis laoreet placerat tellus finibus porta. Nam ultricies venenatis risus, nec pretium lorem rhoncus sed."
-        android:textAppearance="?android:attr/textAppearanceMedium"
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:hint="lorem ipsum"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp" />
+        android:id="@+id/frontImage" />
     <Button
-        android:text="Button"
+        android:text="Create App Notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/myButton" />
+        android:id="@+id/appNotification" />
+    <Button
+        android:text="Create a Web Notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/webNotification" />
 </LinearLayout>

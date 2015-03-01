@@ -1,0 +1,1 @@
+C:\Users\N\Documents\mind-the-app\android\Components\azure-mobile-services-1.3.1\samples\androidsample\androidsample\obj\Debug\androidsample.csprojResolveAssemblyReference.cache

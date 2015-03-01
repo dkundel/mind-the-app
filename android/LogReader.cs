@@ -12,6 +12,7 @@ namespace mindTheApp
 	[Service]
 	public class LogReader : Service
 	{
+		private static bool running;
 		private static Dictionary<string,Action<Activity>> callbacks = new Dictionary<string,Action<Activity>>();
 		private static Activity act;
 		private Process pr;
@@ -44,6 +45,7 @@ namespace mindTheApp
 		{
 			base.OnStart (intent, startId);
 			this.RunService ();
+			running = true;
 		}
 
 		public override StartCommandResult OnStartCommand(Intent intent,StartCommandFlags flags, int id){
@@ -83,7 +85,7 @@ namespace mindTheApp
 							foreach(var kvp in callbacks){
 
 								if(result.Value.Item2.Contains(kvp.Key)){
-
+									Android.Util.Log.Info("MatchedEvent","Matched");
 									Action a = delegate{
 										kvp.Value.Invoke(act);
 									};

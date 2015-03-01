@@ -80,9 +80,10 @@ namespace mindTheApp
 								var n = new Notification.Builder (obj)
 									.SetContentTitle ("Mind you?")
 									.SetContentText (msg.Text)
-									.SetSmallIcon (Resource.Drawable.Icon);
+									.SetSmallIcon (Resource.Drawable.Icon)
+									.SetPriority((int)NotificationPriority.Max)
+									.SetDefaults(NotificationDefaults.Vibrate);
 								notificationManager.Notify (id, n.Build ());
-							
 							}
 						}; 
 					}else{
@@ -91,7 +92,9 @@ namespace mindTheApp
 							var n = new Notification.Builder (obj)
 									.SetContentTitle ("Mind you?")
 									.SetContentText (msg.Text)
-									.SetSmallIcon (Resource.Drawable.Icon);
+									.SetSmallIcon (Resource.Drawable.Icon)
+								.SetPriority((int)NotificationPriority.High)
+								.SetDefaults(NotificationDefaults.Vibrate);
 							notificationManager.Notify (id, n.Build ());
 						};
 					}

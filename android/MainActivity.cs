@@ -33,7 +33,7 @@ namespace mindTheApp
 			Button webN = FindViewById<Button> (Resource.Id.webNotification);
 
 			appN.Click += delegate {
-				StartActivity(typeof(AppChooserActivity));
+				StartActivity(typeof(Conditionals.ConditionalPicker));
 			};
 
 			webN.Click += delegate {
@@ -57,18 +57,7 @@ namespace mindTheApp
 //		}
 //		[Activity(Label = "", UiOptions=Android.Content.PM.UiOptions.SplitActionBarWhenNarrow)]
 	
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			base.OnActivityResult(requestCode, resultCode, data);
-			if (resultCode == Result.Ok) {
-				var helloLabel = FindViewById<TextView> (Resource.Id.textView1);
-				//helloLabel.Text = data.GetStringExtra("packageName");
 
-				Intent settings = new Intent (this.ApplicationContext, typeof(Conditionals.ConditionalPicker));
-				settings.PutExtra (Conditionals.ConditionalPicker.AppTrigger, data.GetStringExtra ("packageName"));
-				StartActivity (settings);
-			}
-		}
 	
 	
 	}

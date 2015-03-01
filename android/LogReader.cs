@@ -33,7 +33,7 @@ namespace mindTheApp
 		}
 
 		public static void RemoveCallback(string package){
-			if(callbacks.ContainsKey(package))
+			if(package != null && callbacks.ContainsKey(package))
 				callbacks.Remove(package);
 		}
 

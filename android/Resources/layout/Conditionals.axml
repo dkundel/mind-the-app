@@ -8,13 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/chooseApp"
-        android:background="#ff0c9875" />
+        android:background="#ff0c9875"
+        android:padding="10dp"
+        android:layout_margin="10dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/message"
         android:hint="Reminder Message"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:layout_margin="10dp" />
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

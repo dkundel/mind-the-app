@@ -31,13 +31,14 @@ namespace mindTheApp
 			for (int i = 0; i < appList.Count (); i++) {
 				if (appList [i].SourceDir.StartsWith("/data/app/")) {
 					applicationListItems.Add (new ApplicationListItem () {
-						Heading = appList [i].LoadLabel (this.PackageManager),
+						AppName = appList [i].LoadLabel (this.PackageManager),
+						AppPackageName = appList[i].PackageName,
 						ImageDrawable = appList [i].LoadIcon (this.PackageManager)
 					});
 				}
 			}
 
-			applicationListItems = applicationListItems.OrderBy (o => o.Heading).ToList ();
+			applicationListItems = applicationListItems.OrderBy (o => o.AppName).ToList ();
 
 			listView.Adapter = new ApplicationListAdapter(this, applicationListItems);
 			listView.ItemClick += OnListItemClick;
@@ -46,7 +47,12 @@ namespace mindTheApp
 		{
 			var listView = sender as ListView;
 			var t = applicationListItems[e.Position];
-			Android.Widget.Toast.MakeText(this, t.Heading, Android.Widget.ToastLength.Short).Show();
+
+			Intent myIntent = new Intent (this, typeof(MainActivity));
+			myIntent.PutExtra ("packageName", t.AppPackageName);
+			myIntent.PutExtra ("appName", t.AppName);
+			SetResult (Result.Ok, myIntent);
+			Finish();
 		}
 	}
 }

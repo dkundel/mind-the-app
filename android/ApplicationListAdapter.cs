@@ -41,7 +41,7 @@ namespace mindTheApp
 			View view = convertView;
 			if (view == null) // no view to re-use, create new
 				view = context.LayoutInflater.Inflate(Resource.Layout.AppChooserEntry, null);
-			view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Heading;
+			view.FindViewById<TextView>(Resource.Id.Text1).Text = item.AppName;
 			view.FindViewById<ImageView>(Resource.Id.Image).SetImageDrawable(item.ImageDrawable);
 			return view;
 		}

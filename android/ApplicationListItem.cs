@@ -14,7 +14,8 @@ namespace mindTheApp
 {
     public class ApplicationListItem 
 	{
-        public string Heading { get; set; }
+        public string AppName { get; set; }
+		public string AppPackageName { get; set; }
 		public Android.Graphics.Drawables.Drawable ImageDrawable { get; set; }
     }
 }

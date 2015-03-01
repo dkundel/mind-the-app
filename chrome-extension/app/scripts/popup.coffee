@@ -37,6 +37,14 @@ document.addEventListener 'polymer-ready', () ->
     idx = $('#reminderList .row').index(this)
     loadDetailsReminder(idx)
 
+  document.getElementById('conditionalInput').onchange = (e) ->
+    unless document.getElementById('conditionalInput').checked
+      document.getElementById('fromInput').addAttribute('disabled', true)
+      document.getElementById('toInput').addAttribute('disabled', true)
+    else
+      document.getElementById('fromInput').removeAttribute('disabled')
+      document.getElementById('toInput').removeAttribute('disabled')
+
   chrome.runtime.sendMessage({action: 'userStatus'}, (response) ->
     console.log 'resp', response
     if response is not null
@@ -72,6 +80,13 @@ createReminder = () ->
     trigger: document.getElementById('urlInput')?.value
     message: document.getElementById('messageInput')?.value
     repeating: document.getElementById('repeatingInput')?.checked
+  
+  if document.getElementById('conditionalInput')?.checked
+    reminder.conditions = 
+      from: document.getElementById('fromInput')?.value
+      to: document.getElementById('toInput')?.value
+
+  reminder.conditions = JSON.stringify(reminder.conditions)
 
   chrome.runtime.sendMessage({action: 'addReminder', reminder}, (response) ->
     console.log('resp', response)

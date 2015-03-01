@@ -102,12 +102,25 @@ handlePageSwitch = (url, sendResponse) ->
       localforage.getItem key, (err, value) ->
         unless err
           if value
-            unless value.repeating
-              showNotification value.name, value.message
-              localforage.removeItem key, (err) ->
-                console.log err
+            if value.conditions
+              cond = JSON.parse value.conditions
+              now = moment()
+              from = moment(cond.from, 'HH:mm')
+              to = moment(cond.to, 'HH:mm')
+              if now.isBetween(from, to)
+                unless value.repeating
+                  showNotification value.name, value.message
+                  localforage.removeItem key, (err) ->
+                    console.log err
+                else
+                  showNotification value.name, value.message
             else
-              showNotification value.name, value.message
+              unless value.repeating
+                showNotification value.name, value.message
+                localforage.removeItem key, (err) ->
+                  console.log err
+              else
+                showNotification value.name, value.message
         else
           console.log err
 
@@ -132,23 +145,15 @@ syncData = () ->
   if CurrentUser
     console.log 'SYNC'
     query = Client.getTable REMINDER_TABLENAME
-    localforage.getItem 'LASTSYNC', (err, value) ->
-      unless err
-        if value
-          query = query.where () ->
-            return moment(this._updatedAt).isAfter(value)
-        query.where(
-          type: 'browser'
-          user: CurrentUser.userId
-        ).orderBy('_updatedAt').read().done((results) ->
-          _.each(results, (result) ->
-            localforage.setItem result.trigger, result, (err, value) ->
-              ReminderUrls.push(result.trigger)
-          )
-          localforage.setItem 'LASTSYNC', moment.utc().format(), (err, value) ->
-            if err
-              console.log 'syncerr', err
-        )
+    query.where(
+      type: 'browser'
+      user: CurrentUser.userId
+    ).orderBy('_updatedAt').read().done((results) ->
+      _.each(results, (result) ->
+        localforage.setItem result.trigger, result, (err, value) ->
+          ReminderUrls.push(result.trigger)
+      )
+    )
 
 
 

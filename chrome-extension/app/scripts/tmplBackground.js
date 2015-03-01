@@ -132,15 +132,33 @@
       });
       return _.each(matches, function(key) {
         return localforage.getItem(key, function(err, value) {
+          var cond, from, now, to;
           if (!err) {
             if (value) {
-              if (!value.repeating) {
-                showNotification(value.name, value.message);
-                return localforage.removeItem(key, function(err) {
-                  return console.log(err);
-                });
+              if (value.conditions) {
+                cond = JSON.parse(value.conditions);
+                now = moment();
+                from = moment(cond.from, 'HH:mm');
+                to = moment(cond.to, 'HH:mm');
+                if (now.isBetween(from, to)) {
+                  if (!value.repeating) {
+                    showNotification(value.name, value.message);
+                    return localforage.removeItem(key, function(err) {
+                      return console.log(err);
+                    });
+                  } else {
+                    return showNotification(value.name, value.message);
+                  }
+                }
               } else {
-                return showNotification(value.name, value.message);
+                if (!value.repeating) {
+                  showNotification(value.name, value.message);
+                  return localforage.removeItem(key, function(err) {
+                    return console.log(err);
+                  });
+                } else {
+                  return showNotification(value.name, value.message);
+                }
               }
             }
           } else {
@@ -172,29 +190,15 @@
     if (CurrentUser) {
       console.log('SYNC');
       query = Client.getTable(REMINDER_TABLENAME);
-      return localforage.getItem('LASTSYNC', function(err, value) {
-        if (!err) {
-          if (value) {
-            query = query.where(function() {
-              return moment(this._updatedAt).isAfter(value);
-            });
-          }
-          return query.where({
-            type: 'browser',
-            user: CurrentUser.userId
-          }).orderBy('_updatedAt').read().done(function(results) {
-            _.each(results, function(result) {
-              return localforage.setItem(result.trigger, result, function(err, value) {
-                return ReminderUrls.push(result.trigger);
-              });
-            });
-            return localforage.setItem('LASTSYNC', moment.utc().format(), function(err, value) {
-              if (err) {
-                return console.log('syncerr', err);
-              }
-            });
+      return query.where({
+        type: 'browser',
+        user: CurrentUser.userId
+      }).orderBy('_updatedAt').read().done(function(results) {
+        return _.each(results, function(result) {
+          return localforage.setItem(result.trigger, result, function(err, value) {
+            return ReminderUrls.push(result.trigger);
           });
-        }
+        });
       });
     }
   };

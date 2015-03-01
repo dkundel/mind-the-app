@@ -122,6 +122,7 @@ paper-button[raised].facebookLogin {
 core-pages {
   > div {
     position: relative;
+    overflow: scroll;
   }
 
   #createPage {

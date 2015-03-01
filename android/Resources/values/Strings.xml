@@ -2,4 +2,7 @@
 <resources>
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">mindTheApp</string>
+	<string-array name="conditions">
+        <item>Time_Range</item>
+    </string-array>
 </resources>

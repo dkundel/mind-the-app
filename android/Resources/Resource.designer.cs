@@ -28,6 +28,22 @@ namespace mindTheApp
 		{
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int conditions = 2131034112;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -60,11 +76,32 @@ namespace mindTheApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int myButton = 2131034113;
+			// aapt resource value: 0x7f060004
+			public const int checkBox1 = 2131099652;
 			
-			// aapt resource value: 0x7f050000
-			public const int textView1 = 2131034112;
+			// aapt resource value: 0x7f060003
+			public const int enabled = 2131099651;
+			
+			// aapt resource value: 0x7f060002
+			public const int linearLayout1 = 2131099650;
+			
+			// aapt resource value: 0x7f060008
+			public const int myButton = 2131099656;
+			
+			// aapt resource value: 0x7f060001
+			public const int scrollView1 = 2131099649;
+			
+			// aapt resource value: 0x7f060000
+			public const int textView1 = 2131099648;
+			
+			// aapt resource value: 0x7f060006
+			public const int timePicker1 = 2131099654;
+			
+			// aapt resource value: 0x7f060005
+			public const int timePicker2 = 2131099653;
+			
+			// aapt resource value: 0x7f060007
+			public const int timeRange = 2131099655;
 			
 			static Id()
 			{
@@ -80,7 +117,10 @@ namespace mindTheApp
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int Conditionals = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int Main = 2130903041;
 			
 			static Layout()
 			{

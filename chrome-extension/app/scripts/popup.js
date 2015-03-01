@@ -28,6 +28,15 @@
       idx = $('#reminderList .row').index(this);
       return loadDetailsReminder(idx);
     });
+    document.getElementById('conditionalInput').onchange = function(e) {
+      if (!document.getElementById('conditionalInput').checked) {
+        document.getElementById('fromInput').addAttribute('disabled', true);
+        return document.getElementById('toInput').addAttribute('disabled', true);
+      } else {
+        document.getElementById('fromInput').removeAttribute('disabled');
+        return document.getElementById('toInput').removeAttribute('disabled');
+      }
+    };
     return chrome.runtime.sendMessage({
       action: 'userStatus'
     }, function(response) {
@@ -68,13 +77,20 @@
   };
 
   createReminder = function() {
-    var reminder, _ref, _ref1, _ref2, _ref3;
+    var reminder, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
     reminder = {
       name: (_ref = document.getElementById('nameInput')) != null ? _ref.value : void 0,
       trigger: (_ref1 = document.getElementById('urlInput')) != null ? _ref1.value : void 0,
       message: (_ref2 = document.getElementById('messageInput')) != null ? _ref2.value : void 0,
       repeating: (_ref3 = document.getElementById('repeatingInput')) != null ? _ref3.checked : void 0
     };
+    if ((_ref4 = document.getElementById('conditionalInput')) != null ? _ref4.checked : void 0) {
+      reminder.conditions = {
+        from: (_ref5 = document.getElementById('fromInput')) != null ? _ref5.value : void 0,
+        to: (_ref6 = document.getElementById('toInput')) != null ? _ref6.value : void 0
+      };
+    }
+    reminder.conditions = JSON.stringify(reminder.conditions);
     return chrome.runtime.sendMessage({
       action: 'addReminder',
       reminder: reminder

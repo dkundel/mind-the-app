@@ -172,54 +172,55 @@ paper-button[raised].facebookLogin {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003123}}
 core-pages > div {
   position: relative;
+  overflow: scroll;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003128}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003129}}
 core-pages #createPage #createReminderBtn {
   position: absolute;
   right: 0;
   bottom: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003136}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003137}}
 paper-fab {
   background-color: #981DA5;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003140}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003141}}
 paper-checkbox {
   padding: 10px;
   padding-right: 15px;
   padding-left: 0px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003146}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003147}}
 paper-input.stretch {
   width: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003150}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003151}}
 paper-ripple {
   position: absolute;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003155}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003156}}
 #reminderList .row {
   padding-left: 10px;
   border-bottom: 1px solid #AAA;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003159}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003160}}
 #reminderList .row .reminderInfoRow .reminderNameRow {
   font-weight: bold;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003162}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003163}}
 #reminderList .row .reminderInfoRow .reminderUrlRow {
   color: #AAA;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003169}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003170}}
 #reminderList .row:last-of-type {
   border-bottom: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003173}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003174}}
 #reminderList core-icon {
   position: absolute;
   right: 10px;
@@ -6232,6 +6233,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <paper-checkbox id="repeatingInput" checked="" for=""></paper-checkbox>
                     <div flex="">Repeating alert</div>
                   </core-label>
+                </div>
+                <div flex="">
+                  <core-label center="" horizontal="" layout="">
+                    <paper-checkbox id="conditionalInput" checked="" for=""></paper-checkbox>
+                    <div flex="">Conditional</div>
+                  </core-label>
+                </div>
+                <div flex="">
+                  <paper-input id="fromInput" label="From HH:mm" floatinglabel="true"></paper-input>
+                  <paper-input id="toInput" label="To HH:mm" floatinglabel="true"></paper-input>
                 </div>
                 <paper-fab id="createReminderBtn" icon="add" aria-label="Create" z="3"></paper-fab>
               </div>

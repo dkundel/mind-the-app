@@ -14,16 +14,6 @@ namespace mindTheApp
 	{
 		int count = 1;
 
-		private void NotifyWebBrowser(){
-
-			int id = 0;
-			NotificationManager notificationManager = this.GetSystemService (Context.NotificationService) as NotificationManager;
-			var n = new Notification.Builder(this).SetContentTitle("AppWasOpened" + id)
-													.SetContentText("text" + id)
-													.SetSmallIcon(Resource.Drawable.Icon);
-			notificationManager.Notify (id, n.Build());
-
-		}
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -31,21 +21,13 @@ namespace mindTheApp
 			// ernesto
 			var l = new LogReader ();
 			System.Threading.Tasks.Task.Factory.StartNew (l.TryLogs);
-			LogReader.AddCallback ("com.android.chrome", this.NotifyWebBrowser);
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			// Get our button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-	
-			button.Click += delegate {
-				var myIntent = new Intent (this, typeof(AppChooserActivity));
-				StartActivityForResult (myIntent, 0);
-			};
+			LogReader.SetActivity (this);
 
-			StartActivity(typeof(Conditionals.ConditionalPicker));
+			StartActivity(typeof(AppChooserActivity));
 			//this.ApplicationContext.StartService ();
 
 			ActionBar.SetDisplayShowHomeEnabled (true);
@@ -66,7 +48,11 @@ namespace mindTheApp
 			base.OnActivityResult(requestCode, resultCode, data);
 			if (resultCode == Result.Ok) {
 				var helloLabel = FindViewById<TextView> (Resource.Id.textView1);
-				helloLabel.Text = data.GetStringExtra("packageName");
+				//helloLabel.Text = data.GetStringExtra("packageName");
+
+				Intent settings = new Intent (this.ApplicationContext, typeof(Conditionals.ConditionalPicker));
+				settings.PutExtra (Conditionals.ConditionalPicker.AppTrigger, data.GetStringExtra ("packageName"));
+				StartActivity (settings);
 			}
 		}
 	

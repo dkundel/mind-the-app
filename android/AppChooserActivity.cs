@@ -52,7 +52,10 @@ namespace mindTheApp
 			myIntent.PutExtra ("packageName", t.AppPackageName);
 			myIntent.PutExtra ("appName", t.AppName);
 			SetResult (Result.Ok, myIntent);
-			Finish();
+			Intent settings = new Intent (this.ApplicationContext, typeof(Conditionals.ConditionalPicker));
+			settings.PutExtra (Conditionals.ConditionalPicker.AppTrigger, t.AppPackageName);
+			StartActivity (settings);
+			//Finish();
 		}
 	}
 }

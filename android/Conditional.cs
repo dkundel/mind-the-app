@@ -106,11 +106,11 @@ namespace mindTheApp
 			{
 				base.OnStart ();
 				SetContentView (Resource.Layout.Conditionals);
-				this.app = Intent.Extras.GetString (AppTrigger);
+				this.app = Intent.GetStringExtra (AppTrigger);
 				CheckBox enabled = FindViewById<CheckBox> (Resource.Id.enabled);
-				enabled.CheckedChange = delegate {
-					this.CreateTrigger();
-				}
+				enabled.CheckedChange += delegate {
+					this.CreateTrigger ();
+				};
 			}
 		}
 	}

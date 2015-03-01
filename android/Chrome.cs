@@ -22,7 +22,13 @@ namespace mindTheApp
 	{
 		private EditText name,trigger,message;
 
+		private static bool go = false;
+
 		private string endpoint = "http://mindtheapp.ngrok.com/reminders";
+
+		public static void Go(){
+			go = true;
+		}
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -40,6 +46,7 @@ namespace mindTheApp
 			Button btn = FindViewById<Button> (Resource.Id.saveBtn);
 			btn.Click += delegate {
 				this.Save();
+				Finish();
 			};
 			// Create your application here
 		}
@@ -58,11 +65,21 @@ namespace mindTheApp
 
 			web.Settings.JavaScriptEnabled = true;
 
+
 			web.PostUrl (
 				this.endpoint,
 				System.Text.Encoding.UTF8.GetBytes(data));
-				
-			//Finish ();
+
+			go = false;
+			int retries = 0;
+
+			while (!go && retries < 4000) {
+				System.Threading.Tasks.Task v = System.Threading.Tasks.Task.Delay (1000);
+				v.Start ();
+				System.Threading.Tasks.Task.WaitAll (new System.Threading.Tasks.Task[]{ v });
+				retries++;
+			}
+			Finish ();
 		}
 	}
 }

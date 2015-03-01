@@ -46,11 +46,12 @@ namespace mindTheApp
 			}
 		}
 
-		[Activity (Label = "conditionalsPicker")]
+		[Activity (Label = "Create Reminder")]
 		public class ConditionalPicker : Activity{
 
 			public static string AppTrigger = "Ix";
 			private string app;
+			private string fullAppName = "Choose an app";
 			private static int id = 0;
 
 			protected void CreateTrigger(){
@@ -61,14 +62,7 @@ namespace mindTheApp
 				TimePicker late = FindViewById<TimePicker> (Resource.Id.late);
 				EditText msg = FindViewById<EditText> (Resource.Id.message);
 
-				Button donebutton = FindViewById<Button> (Resource.Id.donebutton);
-
-				donebutton.Click += delegate {
-					StartActivity(typeof(MainActivity));
-				};
-
-
-				if (toggleButton1.Activated) {
+				if (toggleButton1.Checked) {
 
 					Action<Activity> a;
 
@@ -116,13 +110,37 @@ namespace mindTheApp
 			{
 				base.OnStart ();
 				SetContentView (Resource.Layout.Conditionals);
+
+				Button chooseAppButton = FindViewById<Button> (Resource.Id.chooseApp);
+				chooseAppButton.Text = this.app;
+				chooseAppButton.Click += delegate {
+					var myIntent = new Intent (this, typeof(AppChooserActivity));
+					StartActivityForResult (myIntent, 0);
+				};
+
+				Button donebutton = FindViewById<Button> (Resource.Id.donebutton);
+
+				donebutton.Click += delegate {
+					Finish();
+					//StartActivity(typeof(MainActivity));
+				};
+
 				this.app = Intent.GetStringExtra (AppTrigger);
 				Switch toggleButton1 = FindViewById<Switch> (Resource.Id.toggleButton1);
 				toggleButton1.CheckedChange += delegate {
 					this.CreateTrigger();
 				};
 			}
+
+			protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+			{
+				base.OnActivityResult(requestCode, resultCode, data);
+				if (resultCode == Result.Ok) {
+					this.fullAppName = data.GetStringExtra("appName");
+					this.app = data.GetStringExtra ("packageName");
+				}
+			}
 		}
 	}
 }
-
+	

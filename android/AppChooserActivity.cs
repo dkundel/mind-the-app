@@ -48,14 +48,11 @@ namespace mindTheApp
 			var listView = sender as ListView;
 			var t = applicationListItems[e.Position];
 
-			Intent myIntent = new Intent (this, typeof(MainActivity));
+			Intent myIntent = new Intent (this, typeof(Conditionals.ConditionalPicker));
 			myIntent.PutExtra ("packageName", t.AppPackageName);
 			myIntent.PutExtra ("appName", t.AppName);
 			SetResult (Result.Ok, myIntent);
-			Intent settings = new Intent (this.ApplicationContext, typeof(Conditionals.ConditionalPicker));
-			settings.PutExtra (Conditionals.ConditionalPicker.AppTrigger, t.AppPackageName);
-			StartActivity (settings);
-			//Finish();
+			Finish();
 		}
 	}
 }

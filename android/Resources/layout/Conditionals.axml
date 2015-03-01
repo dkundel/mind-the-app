@@ -3,12 +3,19 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+    <Button
+        android:text="Choose the App"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chooseApp"
+        android:background="#ff0c9875" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/message"
         android:hint="Reminder Title"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:text="Reminder Text" />
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

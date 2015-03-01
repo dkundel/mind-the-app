@@ -1,0 +1,12 @@
+var Client = new WindowsAzure.MobileServiceClient("https://mindtheapp.azure-mobile.net/", "tSvSSuFWStGBwgvknjkCjqwTbdssYC87")
+
+var User = {"userId":"Facebook:1071480032868351","mobileServiceAuthenticationToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjAifQ.eyJleHAiOjE0Mjc3NzQ2NjIsImlzcyI6InVybjptaWNyb3NvZnQ6d2luZG93cy1henVyZTp6dW1vIiwidmVyIjoyLCJhdWQiOiJGYWNlYm9vayIsInVpZCI6IkZhY2Vib29rOjEwNzE0ODAwMzI4NjgzNTEiLCJ1cm46bWljcm9zb2Z0OmNyZWRlbnRpYWxzIjoiQ1FrTDFNOG53NDRuRUxXZWNiVUVOUml1QlhYVHdLQkdpdUtwUVVGRnh3WklJRW9jY216TzlYdFRlV25qSE9lUGVGVjdoOXE0RGtSdGNiNkNUbkZnSTQxM1VsMy9RWmNVcEQxdUtCdjdDa1hhZHRFZ3ZIcmY5ekZpbUwwYXdBMTlxa1UwVUVEMUlrVzJhM3RmTUhGcTdoTU9QUTRZOHJBNk5xMlhOQzMwbHFqOHdKL0FNRHpyZjdEZFNFWDRzaENvWUp4YnAwZlNBbm5hNjcrS1lOaTlIUzhKVmJRYkJ4VHBIMHNsaWlpQUI4ZkticEFZVTZtYVhUZUdBVWcxclhiSGNTSzFtUWFTTSswc2dPcHFKdXVSUXJNS0pBK2liRDA0bDJQMTViMjM0RU44VU1TMDh2Rk9Ba2t5dms1dzU1SUJna1Q1aG5qaUtjUExURmJ1RXQ4UXFnPT0ifQ.wqx3NUKBO7xa8dwIVcu5sRvH1gpCU4_LHm3qAS88p4o"}
+
+Client.currentUser = User;
+setTimeout(function() {
+  Client.getTable('Item').insert(REMINDER).then(function (value) {
+    console.log('SAVED!')
+  }, function (err) {
+    console.log(err);
+  });
+}, 1000);

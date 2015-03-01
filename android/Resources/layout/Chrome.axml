@@ -4,19 +4,32 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <TextView
-        android:text="URL Notifications"
+        android:text="Notification Name"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:id="@+id/textView2"
+        android:layout_marginTop="5.4dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/name" />
+    <TextView
+        android:text="Message"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/message" />
+    <TextView
+        android:text="URL"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,5 +42,6 @@
     <WebView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/browser" />
+        android:id="@+id/browser"
+        android:visibility="invisible" />
 </LinearLayout>

@@ -58,7 +58,7 @@
                     <div class="row" layout horizontal>
                       <div class="reminderInfoRow" flex>
                         <p class="reminderNameRow">{{model.name}}</p>
-                        <p class="reminderUrlRow">{{model.url}}</p>
+                        <p class="reminderUrlRow">{{model.trigger}}</p>
                       </div>
                       <core-icon icon="chevron-right"></core-icon>
                       <paper-ripple fit></paper-ripple>
@@ -76,9 +76,9 @@
                   <h2>Please log in via FB</h2>
                   <paper-button raised class="facebookLogin">Log in with Facebook</paper-button>
                 </div>
-                <div id="countDialog">
+                <div id="countDialog" style="display: none;">
                   <h2>
-                    Hi, <span class="username">Fucked-Up Elephant</span>
+                    Hi! <span class="username"></span>
                   </h2>
                   <p>You currently have <span id="reminderCount">0</span> Reminders saved</p>
                 </div>
@@ -99,6 +99,7 @@
                     <div flex>Repeating alert</div>
                   </core-label>
                 </div>
+                <paper-button raised class="updateButton">Update</paper-button>
               </div>
             </core-pages>
           </div>

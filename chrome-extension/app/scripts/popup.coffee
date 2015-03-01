@@ -31,16 +31,36 @@ document.addEventListener 'polymer-ready', () ->
 
   $('.facebookLogin').click(logIn)
 
+  $('.updateButton').click(update)
+
   $('#reminderList').on 'click', '.row', (e) ->
     idx = $('#reminderList .row').index(this)
     loadDetailsReminder(idx)
 
+  chrome.runtime.sendMessage({action: 'userStatus'}, (response) ->
+    console.log 'resp', response
+    if response is not null
+      $('#loginDialog').hide()
+      $('#countDialog').show()
+  )
+
+
+update = () ->
+  reminder = 
+    name: document.getElementById('nameDetails')?.value
+    trigger: document.getElementById('urlDetails')?.value
+    message: document.getElementById('messageDetails')?.value
+    repeating: document.getElementById('repeatingDetails')?.checked
+
+  chrome.runtime.sendMessage({action: 'updateReminder', reminder}, (response) ->
+    console.log('resp', response)
+  )
 
 loadDetailsReminder = (idx) ->
   reminder = REMINDERS[idx]
   if (reminder)
     document.getElementById('nameDetails').value = reminder.name
-    document.getElementById('urlDetails').value = reminder.url
+    document.getElementById('urlDetails').value = reminder.trigger
     document.getElementById('messageDetails').value = reminder.message
     document.getElementById('repeatingDetails').checked = reminder.repeating
     document.querySelector('core-pages').selected = 3
@@ -49,7 +69,7 @@ loadDetailsReminder = (idx) ->
 createReminder = () ->
   reminder = 
     name: document.getElementById('nameInput')?.value
-    url: document.getElementById('urlInput')?.value
+    trigger: document.getElementById('urlInput')?.value
     message: document.getElementById('messageInput')?.value
     repeating: document.getElementById('repeatingInput')?.checked
 
@@ -65,13 +85,11 @@ getReminders = () ->
   )
 
 logIn = () ->
-  client.login('facebook').then(handleLoggedIn, (err) ->
-    console.log 'err', err
-  )
+  tabsSetting = 
+    url: 'http://localhost:8000/app/options.html'
 
-handleLoggedIn = () ->
-  console.log 'logged in'
-  console.log arguments
+  chrome.tabs.create tabsSetting, (tab) ->
+    console.log tab
 
 chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
   if request?.action is 'updateReminders'
@@ -80,3 +98,6 @@ chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
     document.getElementById('reminderList').data = request.reminders
     REMINDERS = request.reminders
     $('#reminderCount').html(request.reminders.length)
+
+  if request?.action is 'userLogin'
+    handleLogin request.user

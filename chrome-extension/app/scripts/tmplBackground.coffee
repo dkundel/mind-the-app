@@ -28,9 +28,9 @@ storeReminder = (reminder, sendResponse) ->
   reminder.type = 'browser'
   reminder._updatedAt = moment.utc().format()
 
-  localforage.setItem reminder.url, reminder, (err, value) ->
+  localforage.setItem reminder.trigger, reminder, (err, value) ->
     unless err 
-      ReminderUrls.push reminder.url
+      ReminderUrls.push reminder.trigger
       sendResponse {success: true}
       showNotification reminder.name, 'Successfully saved'
       if CurrentUser
@@ -39,6 +39,21 @@ storeReminder = (reminder, sendResponse) ->
     else
       sendResponse {err}
 
+updateReminder = (reminder, sendResponse) ->
+  reminder.user = if CurrentUser then CurrentUser.userId else null
+  reminder.type = 'browser'
+  reminder._updatedAt = moment.utc().format()
+
+  localforage.setItem reminder.trigger, reminder, (err, value) ->
+    unless err 
+      ReminderUrls.push reminder.trigger
+      sendResponse {success: true}
+      showNotification reminder.name, 'Successfully saved'
+      if CurrentUser
+        client.getTable(REMINDER_TABLENAME).insert(reminder).then (value) ->
+          console.log 'TO THE CLOUD!'
+    else
+      sendResponse {err}
 
 showNotification = (name, message, actionName) ->
   opt = 
@@ -74,8 +89,10 @@ getReminders = () ->
       console.log 'responded'
 
 handlePageSwitch = (url, sendResponse) ->
-  console.log url
+  console.log 'url', url
   url = createCleanUrl url
+
+  console.log ReminderUrls
 
   checkMatches = () ->
     matches = _.filter ReminderUrls, (testUrl) ->
@@ -123,10 +140,10 @@ syncData = () ->
         query.where(
           type: 'browser'
           user: CurrentUser.userId
-        ).read().done((results) ->
+        ).orderBy('_updatedAt').read().done((results) ->
           _.each(results, (result) ->
-            localforage.setItem result.url, result, (err, value) ->
-              ReminderUrls.push(result.url)
+            localforage.setItem result.trigger, result, (err, value) ->
+              ReminderUrls.push(result.trigger)
           )
           localforage.setItem 'LASTSYNC', moment.utc().format(), (err, value) ->
             if err
@@ -136,17 +153,20 @@ syncData = () ->
 
 
 syncData()
-setInterval syncData, 30000
+setInterval syncData, 2000
 
 
 chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
   console.log arguments
-  # console.log("from a content script:" + sender.tab.url)
+  # console.log("from a content script:" + sender.tab.trigger)
   if request?.action is 'pageTrigger'
     console.log ReminderUrls?.length
     handlePageSwitch sender.url, sendResponse
 
   if request?.action is 'addReminder'
+    storeReminder request.reminder, sendResponse
+
+  if request?.action is 'updateReminder'
     storeReminder request.reminder, sendResponse
 
   if request?.action is 'getReminders'
@@ -157,6 +177,11 @@ chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
 
   if request?.action is 'userLogin'
     handleLogin request.user
+
+  if request?.action is 'userStatus'
+    console.log 'user', CurrentUser
+    if CurrentUser is not null
+      sendResponse true
 
 
 chrome.notifications.onButtonClicked.addListener (notificationId, buttonIdx) ->

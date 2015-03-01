@@ -15,7 +15,6 @@ handleLoggedIn = (currentUser) ->
   window.postMessage({ type: "FBLOGIN", user: currentUser }, "*")
 
 logIn = () ->
-  alert('foo')
   client.login('facebook').then(handleLoggedIn, (err) ->
     console.log 'err', err
   )

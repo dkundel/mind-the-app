@@ -25,8 +25,8 @@ namespace mindTheApp
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			ImageView view = FindViewById<ImageView> (Resource.Id.frontImage);
-			view.SetImageResource (Resource.Drawable.Icon);
+//			ImageView view = FindViewById<ImageView> (Resource.Id.frontImage);
+//			view.SetImageResource (Resource.Drawable.Icon);
 			LogReader.SetActivity (this);
 
 			Button appN = FindViewById<Button> (Resource.Id.appNotification);

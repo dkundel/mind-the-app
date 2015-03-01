@@ -46,70 +46,71 @@ namespace mindTheApp
 			}
 		}
 
-		public class ConditionalContext{
-
-			private Action<Conditional> cb;
-
-			public ConditionalContext(Action<Conditional> cb){
-				this.cb = cb;
-			}
-
-			public Action<Conditional> Callback{
-
-				get { return this.cb;}
-			}
-		}
-
-		public class ConditionalActivity : Activity{
-
-			protected ConditionalContext ctx;
-
-			protected override void OnStart ()
-			{
-				int ix = Intent.Extras.GetInt (ConditionalPicker.Ix);
-				ctx = ConditionalPicker.GetCtx (ix);
-				base.OnStart ();
-			}
-		}
-
 		[Activity (Label = "conditionalsPicker")]
 		public class ConditionalPicker : Activity{
 
-			public static string Ix = "Ix";
+			public static string AppTrigger = "Ix";
+			private string app;
+			private static int id = 0;
 
-			private static int currIx = 0;
+			protected void CreateTrigger(){
 
-			private static Dictionary<int,ConditionalContext> ctx = new Dictionary<int,ConditionalContext> ();
+				CheckBox enabled = FindViewById<CheckBox> (Resource.Id.enabled);
+				CheckBox withRange = FindViewById<CheckBox> (Resource.Id.times);
+				TimePicker start = FindViewById<TimePicker> (Resource.Id.early);
+				TimePicker late = FindViewById<TimePicker> (Resource.Id.late);
+				EditText msg = FindViewById<EditText> (Resource.Id.message);
 
-			private void InitPicker(Type t, ConditionalContext c){
+				if (enabled.Checked) {
 
-				Intent init = new Intent(this,t);
-				var ix = ++currIx;
-				ctx[ix] = c;
-				init.PutExtra (Ix, ix);
-				StartActivity (init);
+					Action<Activity> a;
+
+					if (withRange.Checked) {
+
+						int h0 = start.CurrentHour.IntValue();
+						int hn = late.CurrentMinute.IntValue();
+						int m0 = start.CurrentHour.IntValue();
+						int mn = late.CurrentMinute.IntValue();
+					
+						a = delegate(Activity obj) {
+							DateTime time = new DateTime ();
+							if (time.Hour >= h0 && time.Hour < hn
+							   && time.Minute >= m0 && time.Minute < mn) {
+								NotificationManager notificationManager = obj.GetSystemService (Context.NotificationService) as NotificationManager;
+								var n = new Notification.Builder (obj)
+									.SetContentTitle ("Mind you?")
+									.SetContentText (msg.Text)
+									.SetSmallIcon (Resource.Drawable.Icon);
+								notificationManager.Notify (id, n.Build ());
+							
+							}
+						}; 
+					}else{
+						a = delegate(Activity obj) {
+							NotificationManager notificationManager = obj.GetSystemService (Context.NotificationService) as NotificationManager;
+							var n = new Notification.Builder (obj)
+									.SetContentTitle ("Mind you?")
+									.SetContentText (msg.Text)
+									.SetSmallIcon (Resource.Drawable.Icon);
+							notificationManager.Notify (id, n.Build ());
+						};
+					}
+
+					LogReader.AddCallback(this.app,a);
+				} else {
+					LogReader.RemoveCallback (this.app);
+				}
 			}
 
 			protected override void OnStart ()
 			{
 				base.OnStart ();
 				SetContentView (Resource.Layout.Conditionals);
-				/*
-				Spinner selectors = (Spinner) FindViewById<Spinner> (Resource.Id.actions);
-				ArrayAdapter conds = ArrayAdapter.CreateFromResource (this.ApplicationContext, Resource.Array.conditions,Android.Resource.Layout.SimpleSpinnerItem);
-				Action<Conditional> call = x => Android.Util.Log.Info ("Created cond", "Created cond");
-
-				selectors.ItemSelected += delegate(object sender, AdapterView.ItemSelectedEventArgs e) {
-						this.InitPicker (actions [e.Position].Item1, new ConditionalContext (call));
-					};
-				selectors.Adapter = conds;
-					//[i] = () => this.InitPicker(actions[i].Item1,new ConditionalContext(call));
-
-			*/
-			}
-
-			public static ConditionalContext GetCtx(int ix){
-				return ctx [ix];
+				this.app = Intent.Extras.GetString (AppTrigger);
+				CheckBox enabled = FindViewById<CheckBox> (Resource.Id.enabled);
+				enabled.CheckedChange = delegate {
+					this.CreateTrigger();
+				}
 			}
 		}
 	}

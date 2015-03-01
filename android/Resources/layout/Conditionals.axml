@@ -27,24 +27,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/enabled" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/message" />
             <CheckBox
                 android:text="Time Range"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/checkBox1" />
+                android:id="@+id/times" />
             <TimePicker
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/timePicker2" />
+                android:id="@+id/early" />
             <TimePicker
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/timePicker1" />
-            <CheckBox
-                android:text="Time Range"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/timeRange" />
+                android:id="@+id/late" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

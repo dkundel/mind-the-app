@@ -39,7 +39,6 @@ namespace mindTheApp
 			button.Click += delegate {
 				button.Text = string.Format ("{0} clicks!", count++);
 			};
-			LogReader.AddCallback ("com.android.chrome", this.NotifyWebBrowser);
 			StartActivity(typeof(Conditionals.ConditionalPicker));
 			//this.ApplicationContext.StartService ();
 

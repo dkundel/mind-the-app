@@ -79,11 +79,14 @@ namespace mindTheApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060004
-			public const int checkBox1 = 2131099652;
+			// aapt resource value: 0x7f060006
+			public const int early = 2131099654;
 			
 			// aapt resource value: 0x7f060003
 			public const int enabled = 2131099651;
+			
+			// aapt resource value: 0x7f060007
+			public const int late = 2131099655;
 			
 			// aapt resource value: 0x7f060002
 			public const int linearLayout1 = 2131099650;
@@ -93,6 +96,9 @@ namespace mindTheApp
 			
 			// aapt resource value: 0x7f06000a
 			public const int linearLayout3 = 2131099658;
+			
+			// aapt resource value: 0x7f060004
+			public const int message = 2131099652;
 			
 			// aapt resource value: 0x7f06000d
 			public const int myButton = 2131099661;
@@ -112,14 +118,8 @@ namespace mindTheApp
 			// aapt resource value: 0x7f06000b
 			public const int textView3 = 2131099659;
 			
-			// aapt resource value: 0x7f060006
-			public const int timePicker1 = 2131099654;
-			
 			// aapt resource value: 0x7f060005
-			public const int timePicker2 = 2131099653;
-			
-			// aapt resource value: 0x7f060007
-			public const int timeRange = 2131099655;
+			public const int times = 2131099653;
 			
 			static Id()
 			{

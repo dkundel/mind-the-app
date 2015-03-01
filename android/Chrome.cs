@@ -27,7 +27,7 @@ namespace mindTheApp
 		private string endpoint = "http://mindtheapp.ngrok.com/reminders";
 
 		public static void Go(){
-			this.Go = true;
+			go = true;
 		}
 
 		protected override void OnCreate (Bundle bundle)
@@ -69,8 +69,14 @@ namespace mindTheApp
 				this.endpoint,
 				System.Text.Encoding.UTF8.GetBytes(data));
 
-			while (!go) {
-				System.Threading.Tasks.Task.Delay (1000).RunSynchronously ();
+			go = false;
+			int retries = 0;
+
+			while (!go && retries < 4000) {
+				System.Threading.Tasks.Task v = System.Threading.Tasks.Task.Delay (1000);
+				v.Start ();
+				System.Threading.Tasks.Task.WaitAll (new System.Threading.Tasks.Task[]{ v });
+				retries++;
 			}
 			Finish ();
 		}

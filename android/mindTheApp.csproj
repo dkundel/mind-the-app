@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="FSharp.Core" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -55,6 +56,8 @@
     <Compile Include="ApplicationListItem.cs" />
     <Compile Include="ListReminderActivity.cs" />
     <Compile Include="Conditional.cs" />
+    <Compile Include="Chrome.cs" />
+    <Compile Include="ChromeList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -74,6 +77,8 @@
     <AndroidResource Include="Resources\layout\AppChooserEntry.axml" />
     <AndroidResource Include="Resources\layout\AppChooserList.axml" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\layout\Chrome.axml" />
+    <AndroidResource Include="Resources\layout\ChromeList.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

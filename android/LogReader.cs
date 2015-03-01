@@ -12,7 +12,7 @@ namespace mindTheApp
 	[Service]
 	public class LogReader : Service
 	{
-		private static Dictionary<string,Action> callbacks = new Dictionary<string,Action>();
+		private static Dictionary<string,Action<Activity>> callbacks = new Dictionary<string,Action<Activity>>();
 		private static Activity act;
 		private Process pr;
 		//private string cmd = "logcat | grep \"I/ActivityManager\""
@@ -26,9 +26,14 @@ namespace mindTheApp
 
 		public static void SetActivity(Activity a){act = a;}
 
-		public static void AddCallback(string package,Action cb){
+		public static void AddCallback(string package,Action<Activity> cb){
 
 			callbacks[package] = cb;
+		}
+
+		public static void RemoveCallback(string package){
+			if(callbacks.ContainsKey(package))
+				callbacks.Remove(package);
 		}
 
 		private void RunService(){
@@ -79,7 +84,11 @@ namespace mindTheApp
 
 								if(result.Value.Item2.Contains(kvp.Key)){
 
-									await Task.Factory.StartNew(kvp.Value);
+									Action a = delegate{
+										kvp.Value.Invoke(act);
+									};
+
+									await Task.Factory.StartNew(a);
 								}
 							}
 						}

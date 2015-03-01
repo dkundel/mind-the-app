@@ -14,38 +14,26 @@ namespace mindTheApp
 	{
 		int count = 1;
 
-		private void NotifyWebBrowser(){
-
-			int id = 0;
-			NotificationManager notificationManager = this.GetSystemService (Context.NotificationService) as NotificationManager;
-			var n = new Notification.Builder(this).SetContentTitle("AppWasOpened" + id)
-													.SetContentText("text" + id)
-													.SetSmallIcon(Resource.Drawable.Icon);
-			notificationManager.Notify (id, n.Build());
-
-		}
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
+			// ernesto
+			var l = new LogReader ();
+			System.Threading.Tasks.Task.Factory.StartNew (l.TryLogs);
+
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			// Get our button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-			var l = new LogReader ();
-			System.Threading.Tasks.Task.Factory.StartNew (l.TryLogs);
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
-			LogReader.AddCallback ("com.android.chrome", this.NotifyWebBrowser);
+			LogReader.SetActivity (this);
+
+			StartActivity(typeof(AppChooserActivity));
 			//this.ApplicationContext.StartService ();
 
 			ActionBar.SetDisplayShowHomeEnabled (true);
 			ActionBar.SetDisplayShowTitleEnabled (true);
-			ActionBar.SetCustomView (Resource.Layout.loweractionbar);
-			ActionBar.SetDisplayShowCustomEnabled (true);
+			// ActionBar.SetCustomView (Resource.Layout.loweractionbar);
+			// ActionBar.SetDisplayShowCustomEnabled (true);
 
 		}
 //		[Application(UiOptions = UiOptions.SplitActionBarWhenNarrow)]
@@ -54,6 +42,22 @@ namespace mindTheApp
 //				: base(javaReference, transfer) { }
 //		}
 //		[Activity(Label = "", UiOptions=Android.Content.PM.UiOptions.SplitActionBarWhenNarrow)]
+	
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult(requestCode, resultCode, data);
+			if (resultCode == Result.Ok) {
+				var helloLabel = FindViewById<TextView> (Resource.Id.textView1);
+				//helloLabel.Text = data.GetStringExtra("packageName");
+
+				Intent settings = new Intent (this.ApplicationContext, typeof(Conditionals.ConditionalPicker));
+				settings.PutExtra (Conditionals.ConditionalPicker.AppTrigger, data.GetStringExtra ("packageName"));
+				StartActivity (settings);
+			}
+		}
+	
+	
 	}
+
 
 }

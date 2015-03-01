@@ -9,8 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-[assembly: Android.Runtime.ResourceDesignerAttribute("mindTheApp.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("mindTheApp.Resource", IsApplication=true)]
 
 namespace mindTheApp
 {
@@ -27,6 +26,22 @@ namespace mindTheApp
 		
 		public static void UpdateIdValues()
 		{
+		}
+		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int conditions = 2131034112;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
 		}
 		
 		public partial class Attribute
@@ -64,29 +79,59 @@ namespace mindTheApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int linearLayout1 = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int Image = 2131099648;
 			
-			// aapt resource value: 0x7f050002
-			public const int linearLayout2 = 2131034114;
+			// aapt resource value: 0x7f060003
+			public const int List = 2131099651;
 			
-			// aapt resource value: 0x7f050004
-			public const int linearLayout3 = 2131034116;
+			// aapt resource value: 0x7f060001
+			public const int Text = 2131099649;
 			
-			// aapt resource value: 0x7f050007
-			public const int myButton = 2131034119;
+			// aapt resource value: 0x7f060002
+			public const int Text1 = 2131099650;
 			
-			// aapt resource value: 0x7f050006
-			public const int stackView1 = 2131034118;
+			// aapt resource value: 0x7f06000a
+			public const int early = 2131099658;
 			
-			// aapt resource value: 0x7f050001
-			public const int textView1 = 2131034113;
+			// aapt resource value: 0x7f060007
+			public const int enabled = 2131099655;
 			
-			// aapt resource value: 0x7f050003
-			public const int textView2 = 2131034115;
+			// aapt resource value: 0x7f06000b
+			public const int late = 2131099659;
 			
-			// aapt resource value: 0x7f050005
-			public const int textView3 = 2131034117;
+			// aapt resource value: 0x7f060006
+			public const int linearLayout1 = 2131099654;
+			
+			// aapt resource value: 0x7f06000c
+			public const int linearLayout2 = 2131099660;
+			
+			// aapt resource value: 0x7f06000e
+			public const int linearLayout3 = 2131099662;
+			
+			// aapt resource value: 0x7f060008
+			public const int message = 2131099656;
+			
+			// aapt resource value: 0x7f060011
+			public const int myButton = 2131099665;
+			
+			// aapt resource value: 0x7f060005
+			public const int scrollView1 = 2131099653;
+			
+			// aapt resource value: 0x7f060010
+			public const int stackView1 = 2131099664;
+			
+			// aapt resource value: 0x7f060004
+			public const int textView1 = 2131099652;
+			
+			// aapt resource value: 0x7f06000d
+			public const int textView2 = 2131099661;
+			
+			// aapt resource value: 0x7f06000f
+			public const int textView3 = 2131099663;
+			
+			// aapt resource value: 0x7f060009
+			public const int times = 2131099657;
 			
 			static Id()
 			{
@@ -102,10 +147,19 @@ namespace mindTheApp
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int loweractionbar = 2130903040;
+			public const int AppChooserEntry = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int AppChooserList = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int Conditionals = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int loweractionbar = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int Main = 2130903044;
 			
 			static Layout()
 			{

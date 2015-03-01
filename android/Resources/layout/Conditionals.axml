@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:text="Customize Conditions"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+    <ScrollView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+            <CheckBox
+                android:text="Enabled"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/enabled" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/message" />
+            <CheckBox
+                android:text="Time Range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/times" />
+            <TimePicker
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/early" />
+            <TimePicker
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/late" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

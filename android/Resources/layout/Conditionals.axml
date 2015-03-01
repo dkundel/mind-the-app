@@ -3,19 +3,12 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <Button
-        android:text="Choose the App"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/chooseApp"
-        android:background="#ff0c9875" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/message"
-        android:hint="Reminder Title"
-        android:padding="10dp"
-        android:text="Reminder Text" />
+        android:hint="Reminder Message"
+        android:padding="10dp" />
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,20 +21,12 @@
         android:id="@+id/times"
         android:padding="10dp"
         android:text="Time Range " />
-    <Button
-        android:text="Done"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/donebutton"
-        android:background="#ff0c9875"
-        android:padding="10dp"
-        android:layout_margin="10dp" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/timeDisplay"
+            android:id="@+id/early2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="" />
@@ -52,85 +37,26 @@
             android:text="Change the time" />
     </LinearLayout>
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="75dp"
-        android:gravity="bottom"
-        android:visibility="visible">
-        <LinearLayout
-            android:layout_weight="30"
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/linearLayout1"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:gravity="center"
-            android:background="#ffc54a4a"
-            android:padding="0dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:id="@+id/late"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="30"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/linearLayout2"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:gravity="center"
-            android:background="@drawable/selector"
-            android:padding="0dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/early"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center" />
-        </LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/late2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+        <Button
+            android:id="@+id/pickTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change the time" />
     </LinearLayout>
-    <ScrollView
-        android:minWidth="25px"
-        android:minHeight="25px"
+    <Button
+        android:text="Done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView1">
-        <LinearLayout
-            android:orientation="vertical"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linearLayout1">
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/early"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center" />
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:id="@+id/late"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center" />
-        </LinearLayout>
-    </ScrollView>
+        android:id="@+id/donebutton"
+        android:background="#ff0c9875"
+        android:padding="10dp"
+        android:layout_margin="10dp" />
 </LinearLayout>

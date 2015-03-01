@@ -44,7 +44,8 @@ namespace mindTheApp
 				var myIntent = new Intent (this, typeof(AppChooserActivity));
 				StartActivityForResult (myIntent, 0);
 			};
-	
+
+			StartActivity(typeof(Conditionals.ConditionalPicker));
 			//this.ApplicationContext.StartService ();
 
 			ActionBar.SetDisplayShowHomeEnabled (true);

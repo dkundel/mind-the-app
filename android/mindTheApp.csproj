@@ -54,6 +54,7 @@
     <Compile Include="ApplicationListAdapter.cs" />
     <Compile Include="ApplicationListItem.cs" />
     <Compile Include="ListReminderActivity.cs" />
+    <Compile Include="Conditional.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -67,6 +68,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
+    <AndroidResource Include="Resources\layout\Conditionals.axml" />
     <AndroidResource Include="Resources\layout\loweractionbar.axml" />
     <AndroidResource Include="Resources\drawable\selector.xml" />
     <AndroidResource Include="Resources\layout\AppChooserEntry.axml" />

@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="hello">Hello World, Click Me!</string>
+	<string name="app_name">mindTheApp</string>
+	<string-array name="conditions">
+        <item>Time_Range</item>
+    </string-array>
 	<string name="app_name">Mind the App</string>
 </resources>

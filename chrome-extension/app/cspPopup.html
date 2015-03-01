@@ -72,10 +72,11 @@
                 </div>
               </div>
               <div id="accountPage">
-                <div id="notLoggedIn">
+                <div id="loginDialog">
                   <h2>Please log in via FB</h2>
+                  <paper-button raised class="facebookLogin">Log in with Facebook</paper-button>
                 </div>
-                <div id="loggedIn">
+                <div id="countDialog">
                   <h2>
                     Hi, <span class="username">Fucked-Up Elephant</span>
                   </h2>
@@ -83,7 +84,21 @@
                 </div>
               </div>
               <div id="detailsPage">
-                
+                <div flex>
+                  <paper-input class="stretch" id="nameDetails" label="Name" floatingLabel="true"></paper-input>
+                </div>
+                <div flex>
+                  <paper-input class="stretch" id="urlDetails" label="Url" floatingLabel="true"></paper-input>
+                </div>
+                <div flex>
+                  <paper-input class="stretch" id="messageDetails" label="Message" floatingLabel="true"></paper-input>
+                </div>
+                <div flex>
+                  <core-label center horizontal layout>
+                    <paper-checkbox id="repeatingDetails" checked for></paper-checkbox>
+                    <div flex>Repeating alert</div>
+                  </core-label>
+                </div>
               </div>
             </core-pages>
           </div>
@@ -105,6 +120,8 @@
     </core-drawer-panel>
 
     <!-- build:js scripts/popup.js -->
+    <script src="scripts/MobileServices.js"></script>
+    <script src="scripts/connectionAzure.js"></script>
     <script src="scripts/popup.js"></script>
     <!-- endbuild -->
   </body>

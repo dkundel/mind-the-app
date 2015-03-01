@@ -2,6 +2,12 @@
 
 console.log('\'Allo \'Allo! Popup')
 
+client = new WindowsAzure.MobileServiceClient(
+  connectionAzure.url, connectionAzure.id
+);
+
+REMINDERS = []
+
 document.addEventListener 'polymer-ready', () ->
   # entry1 = 
   #   name: 'Foo'
@@ -12,8 +18,6 @@ document.addEventListener 'polymer-ready', () ->
   #   url: 'http://foo'
   # document.getElementById('reminderList').data = [entry1, entry2]
 
-  getReminders()
-
   $('#createReminderBtn').click(createReminder)
 
   $('paper-tabs').children().each((idx) -> 
@@ -21,8 +25,25 @@ document.addEventListener 'polymer-ready', () ->
     $tab.click (evt) ->
       console.log idx
       document.querySelector('core-pages').selected = idx
+      if idx is 1
+        getReminders()
   )
 
+  $('.facebookLogin').click(logIn)
+
+  $('#reminderList').on 'click', '.row', (e) ->
+    idx = $('#reminderList .row').index(this)
+    loadDetailsReminder(idx)
+
+
+loadDetailsReminder = (idx) ->
+  reminder = REMINDERS[idx]
+  if (reminder)
+    document.getElementById('nameDetails').value = reminder.name
+    document.getElementById('urlDetails').value = reminder.url
+    document.getElementById('messageDetails').value = reminder.message
+    document.getElementById('repeatingDetails').checked = reminder.repeating
+    document.querySelector('core-pages').selected = 3
 
 
 createReminder = () ->
@@ -43,8 +64,19 @@ getReminders = () ->
     console.log 'Sent'
   )
 
+logIn = () ->
+  client.login('facebook').then(handleLoggedIn, (err) ->
+    console.log 'err', err
+  )
+
+handleLoggedIn = () ->
+  console.log 'logged in'
+  console.log arguments
+
 chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
   if request?.action is 'updateReminders'
     $('#loadingReminders').hide()
     $('#reminderList').show()
     document.getElementById('reminderList').data = request.reminders
+    REMINDERS = request.reminders
+    $('#reminderCount').html(request.reminders.length)

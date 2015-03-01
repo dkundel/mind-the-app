@@ -2,6 +2,17 @@
 
 localforage = require('localforage')
 _ = require('underscore')
+moment = require('moment')
+
+REMINDER_TABLENAME = 'Item'
+
+Client = new WindowsAzure.MobileServiceClient(
+  connectionAzure.url, connectionAzure.id
+);
+
+CurrentUser = null
+
+window.client = Client
 
 localforage.setDriver localforage.LOCALSTORAGE
 
@@ -13,14 +24,18 @@ console.log('\'Allo \'Allo! Event Page for Browser Action')
 # END OF TESTING
 
 storeReminder = (reminder, sendResponse) ->
-  reminder.user = null
-  reminder.repeating = true #TODO!!!
+  reminder.user = if CurrentUser then CurrentUser.userId else null
+  reminder.type = 'browser'
+  reminder._updatedAt = moment.utc().format()
 
   localforage.setItem reminder.url, reminder, (err, value) ->
     unless err 
       ReminderUrls.push reminder.url
       sendResponse {success: true}
       showNotification reminder.name, 'Successfully saved'
+      if CurrentUser
+        client.getTable(REMINDER_TABLENAME).insert(reminder).then (value) ->
+          console.log 'TO THE CLOUD!'
     else
       sendResponse {err}
 
@@ -51,7 +66,8 @@ getReminders = () ->
   Reminders = []
   localforage.iterate (value, key) ->
     console.log 'one more'
-    Reminders.push value
+    if value.type
+      Reminders.push value
     return
   , () ->
     chrome.runtime.sendMessage {action: 'updateReminders', reminders: Reminders}, () ->
@@ -74,7 +90,7 @@ handlePageSwitch = (url, sendResponse) ->
               localforage.removeItem key, (err) ->
                 console.log err
             else
-              showNotification value.name, value.message, 'Disable'
+              showNotification value.name, value.message
         else
           console.log err
 
@@ -90,7 +106,37 @@ createCleanUrl = (dirtyUrl) ->
   return cleanUrl
 
 
-requestSavedReminders()
+handleLogin = (user) ->
+  CurrentUser = user 
+  client.currentUser = user
+
+
+syncData = () ->
+  if CurrentUser
+    console.log 'SYNC'
+    query = Client.getTable REMINDER_TABLENAME
+    localforage.getItem 'LASTSYNC', (err, value) ->
+      unless err
+        if value
+          query = query.where () ->
+            return moment(this._updatedAt).isAfter(value)
+        query.where(
+          type: 'browser'
+          user: CurrentUser.userId
+        ).read().done((results) ->
+          _.each(results, (result) ->
+            localforage.setItem result.url, result, (err, value) ->
+              ReminderUrls.push(result.url)
+          )
+          localforage.setItem 'LASTSYNC', moment.utc().format(), (err, value) ->
+            if err
+              console.log 'syncerr', err
+        )
+
+
+
+syncData()
+setInterval syncData, 30000
 
 
 chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
@@ -105,6 +151,12 @@ chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
 
   if request?.action is 'getReminders'
     getReminders sendResponse
+
+  if request?.action is 'getClient'
+    sendResponse(client)
+
+  if request?.action is 'userLogin'
+    handleLogin request.user
 
 
 chrome.notifications.onButtonClicked.addListener (notificationId, buttonIdx) ->

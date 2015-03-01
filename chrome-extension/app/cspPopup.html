@@ -49,6 +49,16 @@
                     <div flex>Repeating alert</div>
                   </core-label>
                 </div>
+                <div flex>
+                  <core-label center horizontal layout>
+                    <paper-checkbox id="conditionalInput" checked for></paper-checkbox>
+                    <div flex>Conditional</div>
+                  </core-label>
+                </div>
+                <div flex>
+                  <paper-input id="fromInput" label="From HH:mm" floatingLabel="true"></paper-input>
+                  <paper-input id="toInput" label="To HH:mm" floatingLabel="true"></paper-input>
+                </div>
                 <paper-fab id="createReminderBtn" icon="add" aria-label="Create" z="3"></paper-fab>
               </div>
               <div id="listPage" flex>

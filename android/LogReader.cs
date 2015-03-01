@@ -80,6 +80,9 @@ namespace mindTheApp
 					if(line != null){
 						mindTheApp.parser.PResult<Tuple<int,string>,string> result = mindTheApp.logParser.pActivity.Parse(line);
 					
+						if(line.Contains("SAVED!"))
+							Chrome.Go();
+
 						if(result.Success){
 
 							foreach(var kvp in callbacks){

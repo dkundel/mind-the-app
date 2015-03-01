@@ -91,17 +91,14 @@ namespace mindTheApp
 			// aapt resource value: 0x7f060002
 			public const int Text1 = 2131099650;
 			
-			// aapt resource value: 0x7f060019
-			public const int appNotification = 2131099673;
+			// aapt resource value: 0x7f060018
+			public const int appNotification = 2131099672;
 			
 			// aapt resource value: 0x7f060009
 			public const int browser = 2131099657;
 			
 			// aapt resource value: 0x7f060012
 			public const int early = 2131099666;
-			
-			// aapt resource value: 0x7f060018
-			public const int frontImage = 2131099672;
 			
 			// aapt resource value: 0x7f060010
 			public const int late = 2131099664;
@@ -157,8 +154,8 @@ namespace mindTheApp
 			// aapt resource value: 0x7f060007
 			public const int trigger = 2131099655;
 			
-			// aapt resource value: 0x7f06001a
-			public const int webNotification = 2131099674;
+			// aapt resource value: 0x7f060019
+			public const int webNotification = 2131099673;
 			
 			static Id()
 			{

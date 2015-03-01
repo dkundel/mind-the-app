@@ -99,15 +99,74 @@ h3 {
   font-weight: 400;
 }
 
-/** No more copy paste */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000374}}
+paper-checkbox::shadow #ink[checked] {
+  color: #0c9875;
+}
+
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000377}}
+paper-checkbox::shadow #checkbox.checked {
+  background-color: #0c9875;
+  border-color: #0c9875;
+}
+
+/** No more copy paste */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000385}}
 core-pages > div {
   position: relative;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000390}}
+core-pages #createPage #createReminderBtn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000398}}
 paper-fab {
   background-color: #981DA5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003102}}
+paper-checkbox {
+  padding: 10px;
+  padding-right: 15px;
+  padding-left: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003108}}
+paper-input.stretch {
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003112}}
+paper-ripple {
+  position: absolute;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003117}}
+#reminderList .row {
+  padding-left: 10px;
+  border-bottom: 1px solid #AAA;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003121}}
+#reminderList .row .reminderInfoRow .reminderNameRow {
+  font-weight: bold;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003124}}
+#reminderList .row .reminderInfoRow .reminderUrlRow {
+  color: #AAA;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003131}}
+#reminderList .row:last-of-type {
+  border-bottom: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003135}}
+#reminderList core-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 </style>
     <!-- endbuild -->
@@ -6097,33 +6156,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <span flex="">Mind the App</span>
         </core-toolbar>
         <div fit="" vertical="" layout="">
-          <div flex="" class="content">
-            <core-pages selected="0">
+          <div flex="" class="content" vertical="" layout="">
+            <core-pages selected="0" flex="">
               <div id="createPage">
                 <h2>Create Reminder</h2>
-                <div>
-                  <paper-input id="nameInput" label="Name" floatinglabel="true"></paper-input>
+                <div flex="">
+                  <paper-input class="stretch" id="nameInput" label="Name" floatinglabel="true"></paper-input>
                 </div>
-                <div>
-                  <paper-input id="urlInput" label="Url" floatinglabel="true"></paper-input>
+                <div flex="">
+                  <paper-input class="stretch" id="urlInput" label="Url" floatinglabel="true"></paper-input>
                 </div>
-                <div>
-                  <paper-input id="messageInput" label="Message" floatinglabel="true"></paper-input>
+                <div flex="">
+                  <paper-input class="stretch" id="messageInput" label="Message" floatinglabel="true"></paper-input>
+                </div>
+                <div flex="">
+                  <core-label center="" horizontal="" layout="">
+                    <paper-checkbox id="repeatingInput" checked="" for=""></paper-checkbox>
+                    <div flex="">Repeating alert</div>
+                  </core-label>
                 </div>
                 <paper-fab id="createReminderBtn" icon="add" aria-label="Create" z="3"></paper-fab>
               </div>
               <div id="listPage" flex="">
                 <h2>Your Reminders</h2>
-                <core-list id="reminderList" style="height: 100%;">
+                <core-list id="reminderList" style="height: 100%; display: none;">
                   <template>
-                    <div class="row">
-                      <p>{{model.name}}</p>
-                      <p>{{model.url}}</p>s
+                    <div class="row" layout="" horizontal="">
+                      <div class="reminderInfoRow" flex="">
+                        <p class="reminderNameRow">{{model.name}}</p>
+                        <p class="reminderUrlRow">{{model.url}}</p>
+                      </div>
                       <core-icon icon="chevron-right"></core-icon>
+                      <paper-ripple fit=""></paper-ripple>
                     </div>
                     <div divider=""></div>
                   </template>
                 </core-list>
+                <div id="loadingReminders" layout="" vertical="" center="">
+                  <h3>Loading...</h3>
+                  <paper-spinner active=""></paper-spinner>
+                </div>
               </div>
               <div id="accountPage">
                 <div id="notLoggedIn">
@@ -6142,15 +6214,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </core-pages>
           </div>
           <footer>
-            <paper-tabs noink="" selected="0">
+            <paper-tabs id="footerTabs" noink="" selected="0" center="">
             <paper-tab>
-              <a href="#link1" horizontal="" center-center="" layout="">+</a>
+              +
             </paper-tab>
             <paper-tab>
-              <a href="#link2" horizontal="" center-center="" layout="">List Reminders</a>
+              List Reminders
             </paper-tab>
             <paper-tab>
-              <a href="#link3" horizontal="" center-center="" layout="">Account</a>
+              Account
             </paper-tab>
           </paper-tabs>
           </footer>

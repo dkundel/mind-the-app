@@ -5,4 +5,5 @@
 	<string-array name="conditions">
         <item>Time_Range</item>
     </string-array>
+	<string name="app_name">Mind the App</string>
 </resources>

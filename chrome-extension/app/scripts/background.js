@@ -1,13 +1,17 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function() {
   'use strict';
-  var ReminderUrls, createCleanUrl, getReminders, handlePageSwitch, localforage, requestSavedReminders, showNotification, storeReminder, _;
+  var ReminderUrls, Reminders, createCleanUrl, getReminders, handlePageSwitch, localforage, requestSavedReminders, showNotification, storeReminder, _;
 
   localforage = require('localforage');
 
   _ = require('underscore');
 
+  localforage.setDriver(localforage.LOCALSTORAGE);
+
   ReminderUrls = null;
+
+  Reminders = [];
 
   console.log('\'Allo \'Allo! Event Page for Browser Action');
 
@@ -60,8 +64,19 @@
     });
   };
 
-  getReminders = function(sendResponse) {
-    return [];
+  getReminders = function() {
+    Reminders = [];
+    return localforage.iterate(function(value, key) {
+      console.log('one more');
+      Reminders.push(value);
+    }, function() {
+      return chrome.runtime.sendMessage({
+        action: 'updateReminders',
+        reminders: Reminders
+      }, function() {
+        return console.log('responded');
+      });
+    });
   };
 
   handlePageSwitch = function(url, sendResponse) {
@@ -114,7 +129,10 @@
       handlePageSwitch(sender.url, sendResponse);
     }
     if ((request != null ? request.action : void 0) === 'addReminder') {
-      return storeReminder(request.reminder, sendResponse);
+      storeReminder(request.reminder, sendResponse);
+    }
+    if ((request != null ? request.action : void 0) === 'getReminders') {
+      return getReminders(sendResponse);
     }
   });
 

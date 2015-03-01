@@ -63,6 +63,9 @@ namespace mindTheApp
 			// aapt resource value: 0x7f020000
 			public const int Icon = 2130837504;
 			
+			// aapt resource value: 0x7f020001
+			public const int selector = 2130837505;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -86,13 +89,28 @@ namespace mindTheApp
 			public const int linearLayout1 = 2131099650;
 			
 			// aapt resource value: 0x7f060008
-			public const int myButton = 2131099656;
+			public const int linearLayout2 = 2131099656;
+			
+			// aapt resource value: 0x7f06000a
+			public const int linearLayout3 = 2131099658;
+			
+			// aapt resource value: 0x7f06000d
+			public const int myButton = 2131099661;
 			
 			// aapt resource value: 0x7f060001
 			public const int scrollView1 = 2131099649;
 			
+			// aapt resource value: 0x7f06000c
+			public const int stackView1 = 2131099660;
+			
 			// aapt resource value: 0x7f060000
 			public const int textView1 = 2131099648;
+			
+			// aapt resource value: 0x7f060009
+			public const int textView2 = 2131099657;
+			
+			// aapt resource value: 0x7f06000b
+			public const int textView3 = 2131099659;
 			
 			// aapt resource value: 0x7f060006
 			public const int timePicker1 = 2131099654;
@@ -120,7 +138,10 @@ namespace mindTheApp
 			public const int Conditionals = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int loweractionbar = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int Main = 2130903042;
 			
 			static Layout()
 			{

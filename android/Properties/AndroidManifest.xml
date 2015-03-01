@@ -12,4 +12,5 @@
 	<uses-permission android:name="android.permission.READ_PROFILE" />
 	<uses-permission android:name="android.permission.READ_SMS" />
 	<uses-permission android:name="android.permission.READ_LOGS" />
+	<application android:label="MyAwesomeApp" android:uiOptions="splitActionBarWhenNarrow"></application>
 </manifest>

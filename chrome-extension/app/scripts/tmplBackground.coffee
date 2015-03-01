@@ -3,7 +3,10 @@
 localforage = require('localforage')
 _ = require('underscore')
 
+localforage.setDriver localforage.LOCALSTORAGE
+
 ReminderUrls = null
+Reminders = []
 
 console.log('\'Allo \'Allo! Event Page for Browser Action')
 
@@ -44,8 +47,15 @@ requestSavedReminders = (callback) ->
     else
       console.log('Failed to get reminders') 
 
-getReminders = (sendResponse) ->
-  return []
+getReminders = () ->
+  Reminders = []
+  localforage.iterate (value, key) ->
+    console.log 'one more'
+    Reminders.push value
+    return
+  , () ->
+    chrome.runtime.sendMessage {action: 'updateReminders', reminders: Reminders}, () ->
+      console.log 'responded'
 
 handlePageSwitch = (url, sendResponse) ->
   console.log url
@@ -92,6 +102,9 @@ chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
 
   if request?.action is 'addReminder'
     storeReminder request.reminder, sendResponse
+
+  if request?.action is 'getReminders'
+    getReminders sendResponse
 
 
 chrome.notifications.onButtonClicked.addListener (notificationId, buttonIdx) ->

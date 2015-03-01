@@ -30,33 +30,46 @@
           <span flex>Mind the App</span>
         </core-toolbar>
         <div fit vertical layout>
-          <div flex class="content">
-            <core-pages selected="0">
+          <div flex class="content" vertical layout>
+            <core-pages selected="0" flex>
               <div id="createPage">
                 <h2>Create Reminder</h2>
-                <div>
-                  <paper-input id="nameInput" label="Name" floatingLabel="true"></paper-input>
+                <div flex>
+                  <paper-input class="stretch" id="nameInput" label="Name" floatingLabel="true"></paper-input>
                 </div>
-                <div>
-                  <paper-input id="urlInput" label="Url" floatingLabel="true"></paper-input>
+                <div flex>
+                  <paper-input class="stretch" id="urlInput" label="Url" floatingLabel="true"></paper-input>
                 </div>
-                <div>
-                  <paper-input id="messageInput" label="Message" floatingLabel="true"></paper-input>
+                <div flex>
+                  <paper-input class="stretch" id="messageInput" label="Message" floatingLabel="true"></paper-input>
+                </div>
+                <div flex>
+                  <core-label center horizontal layout>
+                    <paper-checkbox id="repeatingInput" checked for></paper-checkbox>
+                    <div flex>Repeating alert</div>
+                  </core-label>
                 </div>
                 <paper-fab id="createReminderBtn" icon="add" aria-label="Create" z="3"></paper-fab>
               </div>
               <div id="listPage" flex>
                 <h2>Your Reminders</h2>
-                <core-list id="reminderList" style="height: 100%;">
+                <core-list id="reminderList" style="height: 100%; display: none;">
                   <template>
-                    <div class="row">
-                      <p>{{model.name}}</p>
-                      <p>{{model.url}}</p>s
+                    <div class="row" layout horizontal>
+                      <div class="reminderInfoRow" flex>
+                        <p class="reminderNameRow">{{model.name}}</p>
+                        <p class="reminderUrlRow">{{model.url}}</p>
+                      </div>
                       <core-icon icon="chevron-right"></core-icon>
+                      <paper-ripple fit></paper-ripple>
                     </div>
                     <div divider></div>
                   </template>
                 </core-list>
+                <div id="loadingReminders" layout vertical center>
+                  <h3>Loading...</h3>
+                  <paper-spinner active></paper-spinner>
+                </div>
               </div>
               <div id="accountPage">
                 <div id="notLoggedIn">
@@ -75,15 +88,15 @@
             </core-pages>
           </div>
           <footer>
-            <paper-tabs noink selected="0">
+            <paper-tabs id="footerTabs" noink selected="0" center>
             <paper-tab>
-              <a href="#link1" horizontal center-center layout>+</a>
+              +
             </paper-tab>
             <paper-tab>
-              <a href="#link2" horizontal center-center layout>List Reminders</a>
+              List Reminders
             </paper-tab>
             <paper-tab>
-              <a href="#link3" horizontal center-center layout>Account</a>
+              Account
             </paper-tab>
           </paper-tabs>
           </footer>

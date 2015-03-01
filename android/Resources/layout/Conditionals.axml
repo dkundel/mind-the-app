@@ -3,6 +3,12 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+    <Button
+        android:text="Choose the App"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chooseApp"
+        android:background="#ff0c9875" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,31 +31,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <Button
+            android:id="@+id/pickTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start time"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:background="#ff0c9875" />
         <TextView
             android:id="@+id/early2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="" />
-        <Button
-            android:id="@+id/pickTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Change the time" />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+        <Button
+            android:id="@+id/pickTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End time"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="#ff0c9875" />
         <TextView
             android:id="@+id/late2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="" />
-        <Button
-            android:id="@+id/pickTime2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Change the time" />
     </LinearLayout>
     <Button
         android:text="Done"

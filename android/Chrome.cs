@@ -40,6 +40,7 @@ namespace mindTheApp
 			Button btn = FindViewById<Button> (Resource.Id.saveBtn);
 			btn.Click += delegate {
 				this.Save();
+				Finish();
 			};
 			// Create your application here
 		}

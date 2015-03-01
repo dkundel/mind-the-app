@@ -71,6 +71,14 @@ h3 {
   font-weight: 400;
 }
 
+paper-checkbox::shadow #ink[checked] {
+  color: $primaryColor;
+}
+paper-checkbox::shadow #checkbox.checked {
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+}
+
 /** No more copy paste */
 
 core-pages {
@@ -80,10 +88,54 @@ core-pages {
 
   #createPage {
     #createReminderBtn {
+      position: absolute;
+      right: 0;
+      bottom: 0;
     }
   }
 }
 
 paper-fab {
   background-color: $accentColor;
+}
+
+paper-checkbox {
+  padding: 10px;
+  padding-right: 15px;
+  padding-left: 0px;
+}
+
+paper-input.stretch {
+  width: 100%;
+}
+
+paper-ripple {
+  position: absolute;
+}
+
+#reminderList {
+  .row {
+    padding-left: 10px;
+
+    .reminderInfoRow {
+      .reminderNameRow {
+        font-weight: bold;
+      }
+      .reminderUrlRow {
+        color: #AAA;
+      }
+    }
+    border-bottom: 1px solid #AAA;
+  }
+
+  .row:last-of-type {
+    border-bottom: none;
+  }
+
+  core-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }

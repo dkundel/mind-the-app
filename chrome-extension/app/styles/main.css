@@ -84,13 +84,72 @@ h3 {
   font-weight: 400;
 }
 
-/** No more copy paste */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000374}}
+paper-checkbox::shadow #ink[checked] {
+  color: #0c9875;
+}
+
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000377}}
+paper-checkbox::shadow #checkbox.checked {
+  background-color: #0c9875;
+  border-color: #0c9875;
+}
+
+/** No more copy paste */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000385}}
 core-pages > div {
   position: relative;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000390}}
+core-pages #createPage #createReminderBtn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\0000398}}
 paper-fab {
   background-color: #981DA5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003102}}
+paper-checkbox {
+  padding: 10px;
+  padding-right: 15px;
+  padding-left: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003108}}
+paper-input.stretch {
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003112}}
+paper-ripple {
+  position: absolute;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003117}}
+#reminderList .row {
+  padding-left: 10px;
+  border-bottom: 1px solid #AAA;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003121}}
+#reminderList .row .reminderInfoRow .reminderNameRow {
+  font-weight: bold;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003124}}
+#reminderList .row .reminderInfoRow .reminderUrlRow {
+  color: #AAA;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003131}}
+#reminderList .row:last-of-type {
+  border-bottom: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/dominik\/dev\/mind-the-app\/chrome-extension\/app\/styles\/main\.scss}line{font-family:\00003135}}
+#reminderList core-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }

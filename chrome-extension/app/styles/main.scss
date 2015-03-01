@@ -1,4 +1,141 @@
+$primaryColor: #0c9875;
+$accentColor: #981DA5;
+
 $padding: 20px;
+
+html {
+  min-width: 400px;
+  min-height: 500px;
+}
+
 body {
   padding: $padding;
+}
+
+*:focus {
+  outline: 0;
+}
+
+body {
+  font-family: sans-serif;
+}
+core-header-panel {
+  background: white;
+}
+core-toolbar {
+  background-color: $primaryColor;
+}
+.content {
+  padding: 20px;
+}
+/* drawer is always visible on a wide screen
+   so menu button isn't required */
+core-drawer-panel:not([narrow]) #navicon {
+  display: none;
+}
+
+
+body {
+  font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+  margin: 0;
+  padding: 24px;
+  color: #333;
+}
+
+body.core-narrow {
+  padding: 8px;
+}
+
+paper-tabs, core-toolbar {
+  background-color: $primaryColor;
+  color: #fff;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+core-toolbar paper-tabs {
+  box-shadow: none;
+}
+
+paper-tabs.transparent-teal {
+  background-color: transparent;
+  color: #00bcd4;
+  box-shadow: none;
+}
+
+paper-tabs #selectionBar {
+  background-color: $accentColor;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+paper-checkbox::shadow #ink[checked] {
+  color: $primaryColor;
+}
+paper-checkbox::shadow #checkbox.checked {
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+}
+
+/** No more copy paste */
+
+core-pages {
+  > div {
+    position: relative;
+  }
+
+  #createPage {
+    #createReminderBtn {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
+
+paper-fab {
+  background-color: $accentColor;
+}
+
+paper-checkbox {
+  padding: 10px;
+  padding-right: 15px;
+  padding-left: 0px;
+}
+
+paper-input.stretch {
+  width: 100%;
+}
+
+paper-ripple {
+  position: absolute;
+}
+
+#reminderList {
+  .row {
+    padding-left: 10px;
+
+    .reminderInfoRow {
+      .reminderNameRow {
+        font-weight: bold;
+      }
+      .reminderUrlRow {
+        color: #AAA;
+      }
+    }
+    border-bottom: 1px solid #AAA;
+  }
+
+  .row:last-of-type {
+    border-bottom: none;
+  }
+
+  core-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }

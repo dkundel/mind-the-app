@@ -1,0 +1,111 @@
+<!doctype html>
+<html style="min-width:400px;">
+  <head>
+    <meta charset="utf-8">
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <script src="bower_components/localforage/dist/localforage.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+    <link rel="import" href="bower_components/core-elements/core-elements.html">
+    <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+  </head>
+  <body unresolved>
+    <core-drawer-panel id="drawerPanel">
+      <core-header-panel main fit vertical layout>
+        <core-toolbar id="mainheader" z="2">
+          <span>
+            <img src="images/logo-white.png" width="80">
+          </span>
+          <span flex>Mind the App</span>
+        </core-toolbar>
+        <div fit vertical layout>
+          <div flex class="content" vertical layout>
+            <core-pages selected="0" flex>
+              <div id="createPage">
+                <h2>Create Reminder</h2>
+                <div flex>
+                  <paper-input class="stretch" id="nameInput" label="Name" floatingLabel="true"></paper-input>
+                </div>
+                <div flex>
+                  <paper-input class="stretch" id="urlInput" label="Url" floatingLabel="true"></paper-input>
+                </div>
+                <div flex>
+                  <paper-input class="stretch" id="messageInput" label="Message" floatingLabel="true"></paper-input>
+                </div>
+                <div flex>
+                  <core-label center horizontal layout>
+                    <paper-checkbox id="repeatingInput" checked for></paper-checkbox>
+                    <div flex>Repeating alert</div>
+                  </core-label>
+                </div>
+                <paper-fab id="createReminderBtn" icon="add" aria-label="Create" z="3"></paper-fab>
+              </div>
+              <div id="listPage" flex>
+                <h2>Your Reminders</h2>
+                <core-list id="reminderList" style="height: 100%; display: none;">
+                  <template>
+                    <div class="row" layout horizontal>
+                      <div class="reminderInfoRow" flex>
+                        <p class="reminderNameRow">{{model.name}}</p>
+                        <p class="reminderUrlRow">{{model.url}}</p>
+                      </div>
+                      <core-icon icon="chevron-right"></core-icon>
+                      <paper-ripple fit></paper-ripple>
+                    </div>
+                    <div divider></div>
+                  </template>
+                </core-list>
+                <div id="loadingReminders" layout vertical center>
+                  <h3>Loading...</h3>
+                  <paper-spinner active></paper-spinner>
+                </div>
+              </div>
+              <div id="accountPage">
+                <div id="notLoggedIn">
+                  <h2>Please log in via FB</h2>
+                </div>
+                <div id="loggedIn">
+                  <h2>
+                    Hi, <span class="username">Fucked-Up Elephant</span>
+                  </h2>
+                  <p>You currently have <span id="reminderCount">0</span> Reminders saved</p>
+                </div>
+              </div>
+              <div id="detailsPage">
+                
+              </div>
+            </core-pages>
+          </div>
+          <footer>
+            <paper-tabs id="footerTabs" noink selected="0" center>
+            <paper-tab>
+              +
+            </paper-tab>
+            <paper-tab>
+              List Reminders
+            </paper-tab>
+            <paper-tab>
+              Account
+            </paper-tab>
+          </paper-tabs>
+          </footer>
+        </div>
+      </core-header-panel>
+    </core-drawer-panel>
+
+    <!-- build:js scripts/popup.js -->
+    <script src="scripts/popup.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

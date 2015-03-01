@@ -56,12 +56,19 @@ namespace mindTheApp
 			protected void CreateTrigger(){
 
 				Switch toggleButton1 = FindViewById<Switch> (Resource.Id.toggleButton1);
-				CheckBox withRange = FindViewById<CheckBox> (Resource.Id.times);
+				Switch withRange = FindViewById<Switch> (Resource.Id.times);
 				TimePicker start = FindViewById<TimePicker> (Resource.Id.early);
 				TimePicker late = FindViewById<TimePicker> (Resource.Id.late);
 				EditText msg = FindViewById<EditText> (Resource.Id.message);
 
-				if (toggleButton1.Checked) {
+				Button donebutton = FindViewById<Button> (Resource.Id.donebutton);
+
+				donebutton.Click += delegate {
+					StartActivity(typeof(MainActivity));
+				};
+
+
+				if (toggleButton1.Activated) {
 
 					Action<Activity> a;
 

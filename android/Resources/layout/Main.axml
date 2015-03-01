@@ -9,19 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/stackView1" />
-    <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/frontImage" />
     <Button
         android:text="Create App Notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/appNotification" />
+        android:id="@+id/appNotification"
+        android:layout_weight="50"
+        android:background="#ff0c9875"
+        android:layout_margin="5dp"
+        android:textColor="#ffffffff" />
     <Button
         android:text="Create a Web Notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/webNotification" />
+        android:id="@+id/webNotification"
+        android:layout_weight="50"
+        android:background="#ff0c9875"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:textColor="#ffffffff" />
 </LinearLayout>

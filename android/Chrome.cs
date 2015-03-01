@@ -17,7 +17,7 @@ using Android.Webkit;
 
 namespace mindTheApp
 {
-	[Activity (Label = "Chrome")]			
+	[Activity (Label = "Add URL Notification")]			
 	public class Chrome : Activity
 	{
 		private EditText name,trigger,message;

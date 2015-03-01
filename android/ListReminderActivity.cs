@@ -21,6 +21,10 @@ namespace mindTheApp
 			base.OnCreate (bundle);
 
 			// Create your application here
+
+			ActionBar.SetDisplayShowHomeEnabled (true);
+//			ActionBar.SetDisplayShowTitleEnabled (true);
+
 		}
 	}
 }

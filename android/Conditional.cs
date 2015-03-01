@@ -55,13 +55,13 @@ namespace mindTheApp
 
 			protected void CreateTrigger(){
 
-				CheckBox enabled = FindViewById<CheckBox> (Resource.Id.enabled);
+				Switch toggleButton1 = FindViewById<Switch> (Resource.Id.toggleButton1);
 				CheckBox withRange = FindViewById<CheckBox> (Resource.Id.times);
 				TimePicker start = FindViewById<TimePicker> (Resource.Id.early);
 				TimePicker late = FindViewById<TimePicker> (Resource.Id.late);
 				EditText msg = FindViewById<EditText> (Resource.Id.message);
 
-				if (enabled.Checked) {
+				if (toggleButton1.Activated) {
 
 					Action<Activity> a;
 
@@ -80,9 +80,10 @@ namespace mindTheApp
 								var n = new Notification.Builder (obj)
 									.SetContentTitle ("Mind you?")
 									.SetContentText (msg.Text)
-									.SetSmallIcon (Resource.Drawable.Icon);
+									.SetSmallIcon (Resource.Drawable.Icon)
+									.SetPriority((int)NotificationPriority.Max)
+									.SetDefaults(NotificationDefaults.Vibrate);
 								notificationManager.Notify (id, n.Build ());
-							
 							}
 						}; 
 					}else{
@@ -91,7 +92,9 @@ namespace mindTheApp
 							var n = new Notification.Builder (obj)
 									.SetContentTitle ("Mind you?")
 									.SetContentText (msg.Text)
-									.SetSmallIcon (Resource.Drawable.Icon);
+									.SetSmallIcon (Resource.Drawable.Icon)
+								.SetPriority((int)NotificationPriority.High)
+								.SetDefaults(NotificationDefaults.Vibrate);
 							notificationManager.Notify (id, n.Build ());
 						};
 					}
@@ -107,9 +110,9 @@ namespace mindTheApp
 				base.OnStart ();
 				SetContentView (Resource.Layout.Conditionals);
 				this.app = Intent.GetStringExtra (AppTrigger);
-				CheckBox enabled = FindViewById<CheckBox> (Resource.Id.enabled);
-				enabled.CheckedChange += delegate {
-					this.CreateTrigger ();
+				Switch toggleButton1 = FindViewById<Switch> (Resource.Id.toggleButton1);
+				toggleButton1.CheckedChange += delegate {
+					this.CreateTrigger();
 				};
 			}
 		}

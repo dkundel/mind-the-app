@@ -27,7 +27,8 @@ namespace mindTheApp
 
 			LogReader.SetActivity (this);
 
-			StartActivity(typeof(AppChooserActivity));
+			//StartActivity(typeof(AppChooserActivity));
+			StartActivity(typeof(Chrome));
 			//this.ApplicationContext.StartService ();
 
 			ActionBar.SetDisplayShowHomeEnabled (true);
